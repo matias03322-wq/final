@@ -79,16 +79,18 @@ const CONFIG_DATA = {
         subtitle: 'Selecciona una emoción para desplegar la carta holográfica correspondiente',
         badge: 'Módulo 4 / 10',
         emotions: [
-            { id: 'aniversario', name: 'Ábrelo en Aniversario', icon: 'fa-gift', color: 'rgba(255, 105, 180, 0.15)' },
-            { id: 'triste', name: 'Ábrelo si estás Triste', icon: 'fa-cloud-showers-water', color: 'rgba(30, 144, 255, 0.15)' },
-            { id: 'feliz', name: 'Ábrelo si estás Feliz', icon: 'fa-wand-magic-sparkles', color: 'rgba(255, 215, 0, 0.15)' },
-            { id: 'cansada', name: 'Ábrelo si estás Cansada', icon: 'fa-circle-check', color: 'rgba(147, 112, 219, 0.15)' }
+            { id: 'feliz', name: 'Feliz', desc: 'Para tus mejores días', icon: 'fa-regular fa-face-smile', color: 'rgba(255, 51, 102, 0.15)' },
+            { id: 'enamorada', name: 'Enamorada', desc: 'Para recordarte cuánto te amo', icon: 'fa-solid fa-heart', color: 'rgba(255, 51, 102, 0.15)' },
+            { id: 'triste', name: 'Triste', desc: 'Para acompañarte en lo que sientes', icon: 'fa-solid fa-cloud', color: 'rgba(255, 51, 102, 0.15)' },
+            { id: 'motivada', name: 'Motivada', desc: 'Para impulsarte a seguir brillando', icon: 'fa-solid fa-wand-magic-sparkles', color: 'rgba(255, 51, 102, 0.15)' },
+            { id: 'cansada', name: 'Cansada', desc: 'Para cuando necesites un abrazo', icon: 'fa-solid fa-moon', color: 'rgba(255, 51, 102, 0.15)' }
         ],
         letters: {
-            'aniversario': 'Querido Amor,\n\nHoy celebramos otro ciclo de complicidad perfecta. A tu lado, el tiempo no transcurre en segundos tradicionales, sino en latidos sincrónicos e intensos. Eres mi constante física favorita del universo.\n\nPara Siempre,\nTu Amor Eterno.',
-            'triste': 'Hola mi cielo,\n\nSi hoy el día se ve nublado, recuerda que detrás de las nubes el sol sigue brillando para nosotros. Estoy a un solo latido de distancia. Cierra los ojos y siente mi abrazo incondicional en este texto.\n\nTe amo infinitamente.',
-            'feliz': '¡Qué alegría verte sonreír!\n\nTu felicidad es el motor que impulsa toda la antigravedad de mi mundo. Sigamos construyendo momentos mágicos y pintando galaxias enteras con nuestra risa compartida.\n\n¡Eres increíble!',
-            'cansada': 'Descansa, mi vida...\n\nSé que te esfuerzas al máximo cada día. Hoy relájate, ponte cómoda y deja que este sistema te susurre lo orgulloso que estoy de ti. Válido por mimos infinitos y masajes de pies al llegar.\n\nTu refugio seguro.'
+            'feliz': '¡Qué alegría verte sonreír, mi vida! Tu felicidad es la luz que ilumina todo mi universo. Cuando sonríes, el mundo entero se detiene y todo cobra sentido. Que hoy sea un día lleno de risas, éxitos y momentos hermosos. Recuerda que tu felicidad es mi mayor tesoro. ¡Te amo con locura! ♡',
+            'enamorada': 'Mi amor, si abriste esta carta es porque quiero recordarte cuánto te amo. No hay un solo segundo del día en que no agradezca al destino por cruzarte en mi camino. Eres la dueña de mis suspiros, mi refugio seguro y mi persona favorita. Mi amor por ti es infinito y crece con cada latido de mi corazón. ♡',
+            'triste': 'Hola mi cielo, entiendo que a veces hay días grises y difíciles. Quiero que recuerdes que no estás sola; estoy aquí para sostener tu mano, abrazarte fuerte y escuchar tus silencios. Permítete sentir lo que necesites, y recuerda que después de la tormenta siempre sale el sol. Estoy contigo en cada paso. ♡',
+            'motivada': '¡A brillar, mi amor! Eres una mujer increíble, fuerte, talentosa y capaz de lograr todo lo que te propongas. No dejes que nada apague tu chispa. Confío plenamente en ti y en la magia que llevas dentro. Sal a conquistar el día, que aquí estaré siempre aplaudiendo cada uno de tus logros. ♡',
+            'cansada': 'Descansa, mi vida. Sé que te esfuerzas al máximo y que a veces el cansancio pesa en los hombros. Por favor, relájate, cierra los ojos y déjame recordarte lo orgulloso que estoy de ti. Esta carta es un vale oficial por mimos infinitos, masajes y todo el cariño del mundo para que repongas tus fuerzas. ♡'
         }
     },
 

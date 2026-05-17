@@ -389,32 +389,123 @@ function hydrateSuperSection(sec, number) {
             initMemoryHubController(sec);
             break;
 
-        case 4: // QUANTUM MAILBOX
+        case 4: // QUANTUM MAILBOX (EL BUZÓN CUÁNTICO 3D HOLOGRÁFICO)
             sec.innerHTML = `
-                <div class="glass-panel reveal-element revealed mailbox-state-container" id="mailbox-ambient-card">
-                    <h2 style="font-family: var(--font-serif); font-size: 2rem; margin-bottom: 0.5rem;">${CONFIG_DATA.quantumMailbox.title}</h2>
-                    <p style="font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-bottom: 1.5rem;">${CONFIG_DATA.quantumMailbox.subtitle}</p>
-                    
-                    <div class="quantum-select-wrapper">
-                        <select class="quantum-select" id="quantum-emotion-select">
-                            <option value="" disabled selected>-- Ábrelo cuando te sientas... --</option>
-                            ${CONFIG_DATA.quantumMailbox.emotions.map(e => `
-                                <option value="${e.id}">${e.name}</option>
-                            `).join('')}
-                        </select>
+                <div class="quantum-mailbox-container reveal-element revealed" id="sec-mailbox-panel">
+                    <!-- 1. Cabecera (Header) -->
+                    <div class="quantum-header">
+                        <h2 class="quantum-main-title">
+                            <span class="glowing-heart">♡</span> El Buzón Cuántico <span class="glowing-heart">♡</span>
+                        </h2>
+                        <p class="quantum-subtitle">
+                            Cada emoción que eliges, viaja hacia ti en forma de carta holográfica.
+                        </p>
                     </div>
 
-                    <div class="envelope-wrapper">
-                        <div class="envelope-glass">
-                            <div class="envelope-flap" id="quantum-envelope-flap"></div>
-                            <div class="wax-seal" id="quantum-wax-seal-btn">
-                                <i class="fa-solid fa-heart"></i>
-                            </div>
+                    <!-- 2. Selector de Estado de Ánimo (Dropdown/Píldora) -->
+                    <div class="quantum-select-wrapper">
+                        <button class="quantum-pill-select" id="btn-pill-dropdown-toggle">
+                            <span>♡ -- Ábrelo cuando te sientas... --</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        
+                        <!-- Lista Dropdown Personalizada -->
+                        <div class="quantum-dropdown-list" id="quantum-dropdown-menu">
+                            ${CONFIG_DATA.quantumMailbox.emotions.map(e => `
+                                <div class="quantum-dropdown-item" data-id="${e.id}">
+                                    <i class="${e.icon}"></i>
+                                    <span>${e.name}</span>
+                                </div>
+                            `).join('')}
                         </div>
                     </div>
 
-                    <div style="background: rgba(5,5,8,0.75); padding: 1.5rem; border-radius: 16px; font-family: monospace; color: var(--color-highlight); min-height: 140px; text-align: left; line-height: 1.6; border: 1px solid rgba(255,255,255,0.03); display: none;" id="quantum-letter-body">
-                        [SELECCIONE UNA EMOCIÓN...]
+                    <!-- 3. Panel Principal (3 Columnas) -->
+                    <div class="quantum-grid-layout">
+                        
+                        <!-- Columna Izquierda: Lista de Emociones -->
+                        <div class="quantum-emotions-column">
+                            ${CONFIG_DATA.quantumMailbox.emotions.map(e => `
+                                <button class="quantum-emotion-card-btn" data-id="${e.id}">
+                                    <div class="quantum-emotion-icon-box">
+                                        <i class="${e.icon}"></i>
+                                    </div>
+                                    <div class="quantum-emotion-text-box">
+                                        <span class="quantum-emotion-title">${e.name}</span>
+                                        <span class="quantum-emotion-desc">${e.desc}</span>
+                                    </div>
+                                </button>
+                            `).join('')}
+                        </div>
+
+                        <!-- Columna Central: El Sobre Holográfico -->
+                        <div class="quantum-envelope-column">
+                            <!-- Decoración de chispas y corazones flotantes -->
+                            <div class="quantum-sparkles-bg">
+                                <span class="float-heart float-1">💖</span>
+                                <span class="float-heart float-2">✨</span>
+                                <span class="float-heart float-3">🌸</span>
+                                <span class="float-heart float-4">💕</span>
+                                <span class="float-heart float-5">💫</span>
+                            </div>
+                            
+                            <div class="quantum-envelope-wrapper">
+                                <!-- Base del sobre en 3D -->
+                                <div class="quantum-envelope" id="quantum-3d-envelope">
+                                    <!-- Cara trasera del sobre -->
+                                    <div class="envelope-back"></div>
+                                    
+                                    <!-- Carta (Papel interno) -->
+                                    <div class="envelope-letter">
+                                        <div class="envelope-letter-paper">
+                                            <div class="letter-text-content" id="quantum-letter-text"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Solapas delanteras (Frontales) -->
+                                    <div class="envelope-front-flaps"></div>
+                                    
+                                    <!-- Solapa superior (Flap) -->
+                                    <div class="envelope-flap-top" id="quantum-envelope-flap">
+                                        <div class="envelope-flap-cursive">Para ti, con todo mi amor.</div>
+                                    </div>
+                                    
+                                    <!-- Sello de cera (Wax Seal Heart) -->
+                                    <div class="envelope-wax-seal" id="quantum-wax-seal-btn">
+                                        <div class="wax-seal-inner">
+                                            <i class="fa-solid fa-heart"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Columna Derecha: Tarjeta de Mensaje -->
+                        <div class="quantum-message-column">
+                            <div class="quantum-message-card">
+                                <h4 class="quantum-message-title">Hola mi amor ♡</h4>
+                                <p class="quantum-message-body">
+                                    Este buzón existe para ti. Porque cada momento contigo, bueno o difícil, merece una carta escrita desde mi corazón.
+                                </p>
+                                <div class="quantum-message-footer">
+                                    <span>Siempre contigo.</span>
+                                    <i class="fa-solid fa-heart"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- 4. Sección Inferior (Footer/Quote) -->
+                    <div class="quantum-footer">
+                        <div class="quantum-footer-quote">
+                            <span>♡ El amor no se ve, pero se siente... y aquí siempre te encuentra.</span>
+                        </div>
+                        <div class="quantum-footer-divider">
+                            <span class="divider-line"></span>
+                            <span class="divider-heart">♡</span>
+                            <span class="divider-line"></span>
+                        </div>
                     </div>
                 </div>
             `;
@@ -1187,61 +1278,156 @@ function triggerPolaroidSparkles(elem) {
 
 // Buzón Cuántico
 function initQuantumMailboxController(sec) {
-    const select = sec.querySelector('#quantum-emotion-select');
+    const pillToggle = sec.querySelector('#btn-pill-dropdown-toggle');
+    const dropdownMenu = sec.querySelector('#quantum-dropdown-menu');
+    const envelope = sec.querySelector('#quantum-3d-envelope');
     const flap = sec.querySelector('#quantum-envelope-flap');
     const seal = sec.querySelector('#quantum-wax-seal-btn');
-    const letter = sec.querySelector('#quantum-letter-body');
-    const ambientCard = sec.querySelector('#mailbox-ambient-card');
+    const letterText = sec.querySelector('#quantum-letter-text');
+    const emotionBtns = sec.querySelectorAll('.quantum-emotion-card-btn');
+    const dropdownItems = sec.querySelectorAll('.quantum-dropdown-item');
 
-    if (!select || !flap || !seal || !letter || !ambientCard) return;
+    if (!envelope || !flap || !seal || !letterText) return;
 
     let selectedEmotion = '';
     let typewriterTimeout = null;
+    let isOpen = false;
 
-    select.addEventListener('change', (e) => {
-        selectedEmotion = e.target.value;
-        const emoConfig = CONFIG_DATA.quantumMailbox.emotions.find(em => em.id === selectedEmotion);
-        
-        // Cambiar iluminación ambiental y sombras de borde
-        if (emoConfig) {
-            ambientCard.style.background = emoConfig.color;
-            ambientCard.style.borderColor = `rgba(${CONFIG_DATA.themes.rose.accent}, 0.4)`;
-            ambientCard.style.boxShadow = `0 15px 40px 0 ${emoConfig.color}`;
-        }
-        
-        // Cerrar sobre si estaba abierto para reiniciar
-        flap.style.transform = 'rotateX(0deg)';
-        letter.style.display = 'none';
-        letter.innerHTML = '';
+    // Función para alternar el menú desplegable de la píldora
+    if (pillToggle && dropdownMenu) {
+        pillToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isMenuOpen = dropdownMenu.style.display === 'flex';
+            dropdownMenu.style.display = isMenuOpen ? 'none' : 'flex';
+            pillToggle.classList.toggle('active', !isMenuOpen);
+        });
+
+        // Cerrar menú al hacer clic afuera
+        document.addEventListener('click', () => {
+            dropdownMenu.style.display = 'none';
+            pillToggle.classList.remove('active');
+        });
+    }
+
+    // Seleccionar emoción y disparar animación
+    function selectEmotion(emotionId) {
         if (typewriterTimeout) clearTimeout(typewriterTimeout);
+        
+        selectedEmotion = emotionId;
+        const emoConfig = CONFIG_DATA.quantumMailbox.emotions.find(e => e.id === emotionId);
+        
+        if (!emoConfig) return;
+
+        // Actualizar UI del selector de píldora
+        if (pillToggle) {
+            const pillSpan = pillToggle.querySelector('span');
+            if (pillSpan) {
+                pillSpan.innerHTML = `<i class="${emoConfig.icon}" style="margin-right: 8px; color: var(--color-highlight);"></i> Sintiéndome: ${emoConfig.name} ♡`;
+            }
+        }
+
+        // Sincronizar botones de la lista izquierda
+        emotionBtns.forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.id === emotionId);
+        });
+
+        // Cerrar el sobre temporalmente si estaba abierto para reiniciarlo
+        if (isOpen) {
+            envelope.classList.remove('open');
+            isOpen = false;
+            letterText.innerHTML = '';
+            
+            // Retardo para reabrir con la nueva carta holográfica
+            setTimeout(() => {
+                openEnvelope();
+            }, 600);
+        } else {
+            openEnvelope();
+        }
+    }
+
+    // Eventos de botones de emoción (Lista izquierda)
+    emotionBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            selectEmotion(btn.dataset.id);
+        });
     });
 
-    seal.addEventListener('click', () => {
-        if (!selectedEmotion) {
-            alert('Por favor, selecciona primero un estado de ánimo en el selector superior.');
-            return;
-        }
+    // Eventos de opciones del menú desplegable
+    dropdownItems.forEach(item => {
+        item.addEventListener('click', () => {
+            selectEmotion(item.dataset.id);
+        });
+    });
 
-        // Abrir sobre
-        flap.style.transform = 'rotateX(180deg)';
-        
+    // Función para abrir el sobre y escribir
+    function openEnvelope() {
+        if (!selectedEmotion) return;
+
+        isOpen = true;
+        envelope.classList.add('open');
+
+        // Retardo para esperar que la solapa 3D del sobre se abra
         setTimeout(() => {
-            letter.style.display = 'block';
-            letter.innerHTML = '';
-            
+            letterText.innerHTML = '';
             const rawText = CONFIG_DATA.quantumMailbox.letters[selectedEmotion];
+            if (!rawText) return;
+
             let idx = 0;
-            
             function type() {
                 if (!sec.isConnected) return;
                 if (idx < rawText.length) {
-                    letter.textContent += rawText[idx];
+                    letterText.textContent += rawText[idx];
                     idx++;
-                    typewriterTimeout = setTimeout(type, 25);
+                    
+                    // Auto-scrollear la carta hacia abajo si el texto es largo
+                    const letterPaper = letterText.closest('.envelope-letter-paper');
+                    if (letterPaper) {
+                        letterPaper.scrollTop = letterPaper.scrollHeight;
+                    }
+                    
+                    typewriterTimeout = setTimeout(type, 30);
                 }
             }
             type();
-        }, 600);
+        }, 850);
+    }
+
+    // Acción del Sello de Cera Central
+    seal.addEventListener('click', (e) => {
+        e.stopPropagation();
+        
+        if (!selectedEmotion) {
+            // Si no hay emoción seleccionada, abrir "feliz" por defecto para un inicio mágico
+            selectEmotion('feliz');
+            return;
+        }
+
+        if (isOpen) {
+            // Cerrar sobre
+            if (typewriterTimeout) clearTimeout(typewriterTimeout);
+            envelope.classList.remove('open');
+            isOpen = false;
+            setTimeout(() => {
+                letterText.innerHTML = '';
+            }, 800);
+        } else {
+            // Reabrir
+            openEnvelope();
+        }
+    });
+
+    // Permitir clic en el sobre mismo para abrir o cerrar
+    envelope.addEventListener('click', (e) => {
+        // Ignorar clics en la carta misma cuando está extendida arriba
+        if (e.target.closest('.envelope-letter')) return;
+        
+        if (!selectedEmotion) {
+            selectEmotion('feliz');
+            return;
+        }
+
+        seal.click();
     });
 }
 

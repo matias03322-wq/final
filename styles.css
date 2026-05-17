@@ -3645,3 +3645,607 @@ body.loaded-state #main-header {
         font-size: 1.8rem;
     }
 }
+
+/* ==========================================================================
+   14. EL BUZÓN CUÁNTICO (ESTÉTICA DARK MODE NEÓN ROMÁNTICO)
+   ========================================================================== */
+.quantum-mailbox-container {
+    width: 100%;
+    max-width: 1100px;
+    background: rgba(9, 9, 9, 0.85);
+    border: 1px solid rgba(255, 51, 102, 0.15);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 51, 102, 0.08);
+    position: relative;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    margin: 2rem auto;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.quantum-header {
+    margin-bottom: 2rem;
+}
+
+.quantum-main-title {
+    font-family: var(--font-serif);
+    font-size: 2.8rem;
+    color: #fff;
+    margin: 0 0 0.5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    text-shadow: 0 0 15px rgba(255, 51, 102, 0.35);
+}
+
+.quantum-main-title .glowing-heart {
+    font-size: 2.2rem;
+    filter: drop-shadow(0 0 8px rgba(255, 51, 102, 0.85));
+    animation: pulse-heart 2s infinite ease-in-out;
+}
+
+@keyframes pulse-heart {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+
+.quantum-subtitle {
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+}
+
+/* Selector de Estado de Ánimo dropdown */
+.quantum-select-wrapper {
+    position: relative;
+    max-width: 420px;
+    margin: 0 auto 2.5rem auto;
+    z-index: 100;
+}
+
+.quantum-pill-select {
+    width: 100%;
+    background: rgba(9, 9, 9, 0.9) !important;
+    border: 1px solid rgba(255, 51, 102, 0.35) !important;
+    color: var(--color-highlight) !important;
+    padding: 0.9rem 1.8rem !important;
+    border-radius: 50px !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(255, 51, 102, 0.05);
+}
+
+.quantum-pill-select:hover {
+    border-color: var(--color-highlight) !important;
+    box-shadow: 0 0 20px rgba(255, 51, 102, 0.25);
+}
+
+.quantum-pill-select i {
+    font-size: 0.95rem;
+    transition: transform 0.3s;
+}
+
+.quantum-pill-select.active i {
+    transform: rotate(180deg);
+}
+
+.quantum-dropdown-list {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    width: 100%;
+    background: rgba(9, 9, 9, 0.98);
+    border: 1px solid rgba(255, 51, 102, 0.25);
+    border-radius: 18px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9), 0 0 25px rgba(255, 51, 102, 0.15);
+    display: none;
+    flex-direction: column;
+    padding: 0.5rem 0;
+    z-index: 200;
+    box-sizing: border-box;
+    backdrop-filter: blur(15px);
+}
+
+.quantum-dropdown-item {
+    padding: 0.8rem 1.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.88rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.quantum-dropdown-item i {
+    color: var(--color-highlight);
+    font-size: 1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.quantum-dropdown-item:hover {
+    background: rgba(255, 51, 102, 0.08);
+    color: #fff;
+    padding-left: 1.8rem;
+}
+
+/* Principal Column Layout */
+.quantum-grid-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr 280px;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+
+/* Columna Izquierda (Lista de Emociones) */
+.quantum-emotions-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.quantum-emotion-card-btn {
+    background: rgba(255, 255, 255, 0.01) !important;
+    border: 1px solid rgba(255, 255, 255, 0.03) !important;
+    border-radius: 16px !important;
+    padding: 1rem 1.2rem !important;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    text-align: left;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.quantum-emotion-card-btn:hover {
+    background: rgba(255, 51, 102, 0.04) !important;
+    border-color: rgba(255, 51, 102, 0.2) !important;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(255, 51, 102, 0.1);
+}
+
+.quantum-emotion-card-btn.active {
+    background: rgba(255, 51, 102, 0.08) !important;
+    border-color: rgba(255, 51, 102, 0.4) !important;
+    box-shadow: 0 0 20px rgba(255, 51, 102, 0.15), inset 0 0 10px rgba(255, 51, 102, 0.05);
+}
+
+.quantum-emotion-icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 51, 102, 0.05);
+    border: 1px solid rgba(255, 51, 102, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-highlight);
+    font-size: 1.15rem;
+    transition: all 0.3s;
+}
+
+.quantum-emotion-card-btn:hover .quantum-emotion-icon-box {
+    background: rgba(255, 51, 102, 0.15);
+    border-color: rgba(255, 51, 102, 0.45);
+    filter: drop-shadow(0 0 8px rgba(255, 51, 102, 0.65));
+}
+
+.quantum-emotion-card-btn.active .quantum-emotion-icon-box {
+    background: var(--color-highlight);
+    border-color: var(--color-highlight);
+    color: #fff;
+    filter: drop-shadow(0 0 8px rgba(255, 51, 102, 0.75));
+}
+
+.quantum-emotion-text-box {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.quantum-emotion-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-highlight);
+    text-shadow: 0 0 4px rgba(255, 51, 102, 0.15);
+}
+
+.quantum-emotion-desc {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+/* Columna Derecha (Tarjeta de Mensaje) */
+.quantum-message-column {
+    display: flex;
+    align-items: stretch;
+    height: 100%;
+}
+
+.quantum-message-card {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 51, 102, 0.25);
+    border-radius: 20px;
+    padding: 2.2rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), inset 0 0 15px rgba(255, 51, 102, 0.02);
+    min-height: 310px;
+    box-sizing: border-box;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.quantum-message-title {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    color: var(--color-highlight);
+    margin: 0 0 1rem 0;
+    text-shadow: 0 0 8px rgba(255, 51, 102, 0.3);
+}
+
+.quantum-message-body {
+    font-size: 0.84rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.6;
+    margin: 0 0 1.5rem 0;
+}
+
+.quantum-message-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.quantum-message-footer span {
+    font-family: var(--font-cursive);
+    font-size: 1.15rem;
+    color: var(--color-highlight);
+}
+
+.quantum-message-footer i {
+    font-size: 0.75rem;
+    color: var(--color-highlight);
+    filter: drop-shadow(0 0 4px var(--color-highlight));
+    margin-top: 2px;
+}
+
+/* Columna Central (Holographic Envelope) */
+.quantum-envelope-column {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 380px;
+}
+
+/* Floating decor inside envelope container */
+.quantum-sparkles-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.float-heart {
+    position: absolute;
+    font-size: 1.1rem;
+    color: var(--color-highlight);
+    filter: drop-shadow(0 0 5px rgba(255, 51, 102, 0.5));
+    opacity: 0.45;
+}
+
+.float-1 { top: 10%; left: 5%; animation: float-slow-1 8s infinite ease-in-out; }
+.float-2 { top: 80%; left: 10%; animation: float-slow-2 9s infinite ease-in-out; }
+.float-3 { top: 15%; right: 5%; animation: float-slow-3 10s infinite ease-in-out; }
+.float-4 { top: 75%; right: 8%; animation: float-slow-1 7s infinite ease-in-out; }
+.float-5 { top: 45%; left: 82%; animation: float-slow-2 8.5s infinite ease-in-out; }
+
+@keyframes float-slow-1 {
+    0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+    50% { transform: translateY(-12px) rotate(15deg) scale(1.1); }
+}
+@keyframes float-slow-2 {
+    0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+    50% { transform: translateY(12px) rotate(-15deg) scale(0.9); }
+}
+@keyframes float-slow-3 {
+    0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+    50% { transform: translateY(-8px) rotate(-10deg) scale(1.05); }
+}
+
+.quantum-envelope-wrapper {
+    position: relative;
+    width: 360px;
+    height: 250px;
+    z-index: 2;
+    perspective: 1000px;
+}
+
+.quantum-envelope {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: rgba(9, 9, 9, 0.95);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 51, 102, 0.35);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 
+                0 0 35px rgba(255, 51, 102, 0.25), 
+                inset 0 0 30px rgba(255, 51, 102, 0.15);
+    transform-style: preserve-3d;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+/* 3D Parts of the Envelope */
+.envelope-back {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(9, 9, 9, 0.98);
+    border-radius: 16px;
+    z-index: 10;
+}
+
+/* The Envelope V Flaps */
+.envelope-front-flaps {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border-radius: 16px;
+    z-index: 30;
+    pointer-events: none;
+    background: 
+        /* Left Diagonal */
+        linear-gradient(35deg, rgba(9, 9, 9, 0.98) 49%, rgba(255, 51, 102, 0.3) 50%, rgba(9, 9, 9, 0.9) 50.5%) no-repeat left bottom / 50% 100%,
+        /* Right Diagonal */
+        linear-gradient(-35deg, rgba(9, 9, 9, 0.98) 49%, rgba(255, 51, 102, 0.3) 50%, rgba(9, 9, 9, 0.9) 50.5%) no-repeat right bottom / 50% 100%;
+}
+
+/* The Wax Seal heart circle in the center */
+.envelope-wax-seal {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: var(--color-highlight);
+    box-shadow: 0 0 25px rgba(255, 51, 102, 0.9), 
+                0 0 10px #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 40;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.envelope-wax-seal:hover {
+    transform: translate(-50%, -50%) scale(1.12);
+    box-shadow: 0 0 35px rgba(255, 51, 102, 1), 
+                0 0 15px #fff;
+}
+
+.wax-seal-inner {
+    color: #fff;
+    font-size: 1.5rem;
+    animation: heart-shimmer 1.5s infinite ease-in-out;
+}
+
+@keyframes heart-shimmer {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 2px #fff); }
+    50% { transform: scale(1.08); filter: drop-shadow(0 0 6px #fff); }
+}
+
+/* Top Envelope Flap */
+.envelope-flap-top {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 50%;
+    background: rgba(9, 9, 9, 0.98);
+    border-radius: 16px 16px 0 0;
+    border-bottom: 1px solid rgba(255, 51, 102, 0.25);
+    z-index: 35;
+    transform-origin: top center;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.envelope-flap-cursive {
+    font-family: var(--font-cursive);
+    font-size: 1.15rem;
+    color: rgba(255, 51, 102, 0.75);
+    padding-top: 15px;
+    text-shadow: 0 0 5px rgba(255, 51, 102, 0.2);
+}
+
+/* When the envelope is open! */
+.quantum-envelope.open .envelope-flap-top {
+    transform: rotateX(180deg);
+    z-index: 15;
+}
+
+/* The Letter inside */
+.envelope-letter {
+    position: absolute;
+    top: 10px; left: 15px;
+    width: calc(100% - 30px);
+    height: calc(100% - 20px);
+    z-index: 20;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.envelope-letter-paper {
+    width: 100%; height: 100%;
+    background: rgba(9, 9, 9, 0.95);
+    border: 1px solid rgba(255, 51, 102, 0.4);
+    border-radius: 12px;
+    padding: 1.2rem;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.6), inset 0 0 20px rgba(255, 51, 102, 0.05);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 51, 102, 0.3) rgba(0, 0, 0, 0.2);
+}
+
+.envelope-letter-paper::-webkit-scrollbar {
+    width: 4px;
+}
+.envelope-letter-paper::-webkit-scrollbar-thumb {
+    background: rgba(255, 51, 102, 0.3);
+    border-radius: 4px;
+}
+
+.letter-text-content {
+    font-family: monospace;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: var(--color-highlight);
+    text-align: left;
+    white-space: pre-wrap;
+    text-shadow: 0 0 6px rgba(255, 51, 102, 0.4);
+}
+
+/* When the letter is fully opened & popped out */
+.quantum-envelope.open .envelope-letter {
+    transform: translateY(-110px) scale(1.08);
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 45;
+}
+
+/* Footer elements of Quantum Mailbox */
+.quantum-footer {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.quantum-footer-quote {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 0.8rem 2.2rem;
+    border-radius: 50px;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.quantum-footer-quote span {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.02em;
+}
+
+.quantum-footer-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.quantum-footer-divider .divider-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 51, 102, 0.4), transparent);
+    flex-grow: 1;
+}
+
+.quantum-footer-divider .divider-heart {
+    font-size: 0.8rem;
+    color: rgba(255, 51, 102, 0.6);
+    filter: drop-shadow(0 0 3px rgba(255, 51, 102, 0.4));
+}
+
+/* Responsividad premium */
+@media (max-width: 1050px) {
+    .quantum-grid-layout {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    
+    .quantum-emotions-column {
+        order: 3;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .quantum-emotion-card-btn {
+        flex: 1 1 240px;
+        max-width: 280px;
+    }
+    
+    .quantum-envelope-column {
+        order: 2;
+    }
+    
+    .quantum-message-column {
+        order: 4;
+        justify-content: center;
+    }
+    
+    .quantum-message-card {
+        max-width: 500px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 560px) {
+    .quantum-mailbox-container {
+        padding: 1.5rem;
+        border-radius: 16px;
+    }
+    
+    .quantum-main-title {
+        font-size: 2.1rem;
+    }
+    
+    .quantum-envelope-wrapper {
+        width: 290px;
+        height: 200px;
+    }
+    
+    .quantum-envelope.open .envelope-letter {
+        transform: translateY(-80px) scale(1.05);
+    }
+    
+    .quantum-footer-quote {
+        padding: 0.8rem 1.2rem;
+        border-radius: 20px;
+    }
+    
+    .quantum-footer-quote span {
+        font-size: 0.75rem;
+    }
+}
