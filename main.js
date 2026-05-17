@@ -561,35 +561,245 @@ function hydrateSuperSection(sec, number) {
             initFutureMapController(sec);
             break;
 
-        case 10: // FINAL VAULT
+        case 10: // FINAL VAULT (DASHBOARD ULTRA-PREMIUM DIGITAL)
             sec.innerHTML = `
-                <div class="glass-panel vault-card reveal-element revealed" id="sec-vault-panel" style="max-width: 500px; width: 100%; padding: 3.5rem 2rem; text-align: center; position: relative;">
-                    <!-- Login de Seguridad (Inicial) -->
-                    <div id="vault-auth-view">
-                        <div class="vault-warning">
-                            <i class="fa-solid fa-shield-halved mr-2" style="font-size: 1.8rem; margin-bottom: 8px;"></i>
-                            <br>${CONFIG_DATA.finalVault.title}<br>${CONFIG_DATA.finalVault.subtitle}
-                        </div>
-                        <div class="vault-input-wrapper">
-                            <input type="password" id="vault-passcode-field" class="vault-input-box" placeholder="DDMMAAAA" maxlength="8">
+                <div class="vault-dashboard-container reveal-element revealed" id="sec-vault-panel">
+                    <!-- CONTENEDOR PRINCIPAL TRIPLE COLUMNA -->
+                    <div class="vault-grid-layout">
+                        
+                        <!-- 1. COLUMNA IZQUIERDA (SIDEBAR) -->
+                        <div class="vault-col-left">
+                            <div class="vault-sidebar-header">
+                                <div class="vault-lock-heart-icon-wrapper">
+                                    <div class="vault-lock-heart-icon">
+                                        <i class="fa-solid fa-heart-lock"></i>
+                                    </div>
+                                    <div class="vault-sparkles-ambient">
+                                        <span>✨</span><span>💖</span><span>✨</span>
+                                    </div>
+                                </div>
+                                <h3 class="vault-cursive-title">Para ti, mi amor ♡</h3>
+                                <p class="vault-sidebar-desc">Guardo lo más importante: nuestro amor, nuestros recuerdos y todo lo que nos hace únicos.</p>
+                            </div>
+                            
+                            <!-- Menú de Navegación Vertical -->
+                            <nav class="vault-sidebar-nav">
+                                <a href="#sec-1" class="vault-nav-item"><i class="fa-solid fa-house-chimney"></i> <span>Bóveda</span></a>
+                                <a href="#sec-3" class="vault-nav-item"><i class="fa-solid fa-images"></i> <span>Recuerdos</span></a>
+                                <a href="#sec-4" class="vault-nav-item"><i class="fa-solid fa-envelope-open-text"></i> <span>Notas</span></a>
+                                <a href="#sec-2" class="vault-nav-item"><i class="fa-solid fa-calendar-days"></i> <span>Nosotros</span></a>
+                                <a href="#sec-10" class="vault-nav-item active"><i class="fa-solid fa-shield-halved"></i> <span>Protección</span></a>
+                                <a href="#sec-10" class="vault-nav-item"><i class="fa-solid fa-gear"></i> <span>Configuración</span></a>
+                            </nav>
+                            
+                            <!-- Tarjeta Inferior de la Columna Izquierda -->
+                            <div class="vault-sidebar-bottom-card">
+                                <p class="vault-cursive-card-text">"Eres mi lugar favorito para guardar todo lo que de verdad importa."</p>
+                                <div class="vault-floating-mini-heart"><i class="fa-solid fa-heart"></i></div>
+                            </div>
                         </div>
                         
-                        <div style="display: flex; flex-direction: column; align-items: center; gap: 1.5rem;">
-                            <button id="btn-unlock-vault-dynamic" class="btn-glow-magenta">Desbloquear Bóveda</button>
-                            
-                            <!-- Switch Háptico de Temas incrustado convenientemente en el login -->
-                            <div style="display: flex; align-items: center; gap: 1rem; margin-top: 1rem;">
-                                <span style="font-size: 0.72rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.1em;">Tema Alternativo:</span>
-                                <div class="haptic-switch-box" id="vault-theme-switch">
-                                    <div class="haptic-switch-nob"></div>
+                        <!-- 2. COLUMNA CENTRAL (PRINCIPAL VAULT) -->
+                        <div class="vault-col-center">
+                            <!-- Auth View: Se desvanece al desbloquear -->
+                            <div id="vault-auth-view" style="display: flex; flex-direction: column; gap: 1.5rem; width: 100%;">
+                                <div class="vault-center-header">
+                                    <div class="vault-shield-heart-icon">
+                                        <i class="fa-solid fa-shield-heart"></i>
+                                    </div>
+                                    <h2 class="vault-center-title">Bóveda de Seguridad</h2>
+                                    <p class="vault-center-subtitle">Ingrese la llave de encriptación para revelar el pacto final (DDMMAAAA)</p>
                                 </div>
+                                
+                                <!-- Input de Contraseña y Ojo -->
+                                <div class="vault-input-container">
+                                    <div class="vault-input-subwrapper">
+                                        <input type="password" id="vault-passcode-field" class="vault-passcode-box" placeholder="DDMMAAAA" maxlength="8">
+                                        <button class="vault-eye-toggle-btn" id="vault-eye-toggle" type="button" aria-label="Mostrar contraseña">
+                                            <i class="fa-solid fa-eye-slash" id="vault-eye-icon"></i>
+                                        </button>
+                                    </div>
+                                    <span class="vault-input-subtext">♡ Nuestra fecha especial ♡</span>
+                                </div>
+                                
+                                <!-- Botón de Acción -->
+                                <button class="btn-vault-unlock-neon" id="btn-unlock-vault-dynamic">
+                                    <i class="fa-solid fa-lock" style="margin-right: 10px;"></i>
+                                    <span>DESBLOQUEAR BÓVEDA</span>
+                                    <i class="fa-solid fa-chevron-right" style="margin-left: auto;"></i>
+                                </button>
+                                
+                                <!-- Tarjeta de Tema Alternativo -->
+                                <div class="vault-theme-row-card">
+                                    <div class="vault-theme-icon-box">
+                                        <i class="fa-solid fa-palette"></i>
+                                    </div>
+                                    <div class="vault-theme-text-col">
+                                        <h4>TEMA ALTERNATIVO</h4>
+                                        <p>Activa un tema visual alternativo hecho con amor para ti.</p>
+                                    </div>
+                                    <!-- Haptic Switch -->
+                                    <div class="vault-haptic-switch-box active" id="vault-theme-switch">
+                                        <div class="vault-haptic-switch-nob"></div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Actividad Reciente -->
+                                <div class="vault-recent-activity-section">
+                                    <div class="vault-recent-header">
+                                        <h3>Actividad reciente</h3>
+                                        <a href="#sec-10" class="vault-view-all-link">Ver todo</a>
+                                    </div>
+                                    <div class="vault-activity-list">
+                                        <div class="vault-activity-item">
+                                            <div class="vault-activity-icon-wrapper"><i class="fa-solid fa-envelope"></i></div>
+                                            <div class="vault-activity-text">
+                                                <h5>Carta nueva guardada</h5>
+                                                <p>Para cuando necesites recordar</p>
+                                            </div>
+                                            <div class="vault-activity-meta">
+                                                <span>Hoy, 10:45 a.m.</span>
+                                                <span class="vault-pink-dot"></span>
+                                            </div>
+                                        </div>
+                                        <div class="vault-activity-item">
+                                            <div class="vault-activity-icon-wrapper"><i class="fa-solid fa-heart"></i></div>
+                                            <div class="vault-activity-text">
+                                                <h5>Momento especial agregado</h5>
+                                                <p>Nuestra foto favorita</p>
+                                            </div>
+                                            <div class="vault-activity-meta">
+                                                <span>Ayer, 08:22 p.m.</span>
+                                                <span class="vault-pink-dot"></span>
+                                            </div>
+                                        </div>
+                                        <div class="vault-activity-item">
+                                            <div class="vault-activity-icon-wrapper"><i class="fa-solid fa-unlock-keyhole"></i></div>
+                                            <div class="vault-activity-text">
+                                                <h5>Recuerdo desbloqueado</h5>
+                                                <p>Volvimos a ver nuestro primer viaje</p>
+                                            </div>
+                                            <div class="vault-activity-meta">
+                                                <span>Ayer, 07:15 p.m.</span>
+                                                <span class="vault-pink-dot"></span>
+                                            </div>
+                                        </div>
+                                        <div class="vault-activity-item">
+                                            <div class="vault-activity-icon-wrapper"><i class="fa-solid fa-pen-nib"></i></div>
+                                            <div class="vault-activity-text">
+                                                <h5>Nota de amor creada</h5>
+                                                <p>Por si un día tienes dudas</p>
+                                            </div>
+                                            <div class="vault-activity-meta">
+                                                <span>Ayer, 01:02 p.m.</span>
+                                                <span class="vault-pink-dot"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Promise View: Hydrated cinemáticamente tras clave correcta -->
+                            <div id="vault-promise-view" style="display: none; padding: 2rem; text-align: center; width: 100%;">
+                                <!-- Inyectado dinámicamente -->
+                            </div>
+                        </div>
+                        
+                        <!-- 3. COLUMNA DERECHA (PANELES INFO) -->
+                        <div class="vault-col-right">
+                            <!-- Tarjeta 1: Lo que guardo por ti -->
+                            <div class="vault-info-card">
+                                <h4 class="vault-info-card-title">Lo que guardo por ti ♡</h4>
+                                <div class="vault-info-list">
+                                    <div class="vault-info-item">
+                                        <div class="vault-info-icon"><i class="fa-solid fa-heart"></i></div>
+                                        <div class="vault-info-text">
+                                            <h5>Nuestro amor</h5>
+                                            <p>Lo más valioso</p>
+                                        </div>
+                                    </div>
+                                    <div class="vault-info-item">
+                                        <div class="vault-info-icon"><i class="fa-solid fa-images"></i></div>
+                                        <div class="vault-info-text">
+                                            <h5>Nuestros recuerdos</h5>
+                                            <p>Momentos inolvidables</p>
+                                        </div>
+                                    </div>
+                                    <div class="vault-info-item">
+                                        <div class="vault-info-icon"><i class="fa-solid fa-face-smile-wink"></i></div>
+                                        <div class="vault-info-text">
+                                            <h5>Tus sonrisas</h5>
+                                            <p>Mi lugar seguro</p>
+                                        </div>
+                                    </div>
+                                    <div class="vault-info-item">
+                                        <div class="vault-info-icon"><i class="fa-solid fa-cloud-sun"></i></div>
+                                        <div class="vault-info-text">
+                                            <h5>Nuestros sueños</h5>
+                                            <p>Todo lo que construiremos</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Tarjeta 2: Recordatorio con Corazón 3D -->
+                            <div class="vault-reminder-card">
+                                <h4 class="vault-reminder-title">Recordatorio</h4>
+                                <div class="vault-3d-heart-wrapper">
+                                    <div class="vault-3d-heart"><i class="fa-solid fa-heart"></i></div>
+                                    <div class="vault-3d-heart-glow"></div>
+                                </div>
+                                <p class="vault-reminder-text">No importa la distancia ni el tiempo, siempre estarás en mi corazón. ♡</p>
+                            </div>
+                            
+                            <!-- Tarjeta 3: Último respaldo -->
+                            <div class="vault-backup-card">
+                                <div class="vault-backup-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                                <div class="vault-backup-text">
+                                    <h4>Último respaldo</h4>
+                                    <p>Hoy, 11:30 a.m. <i class="fa-solid fa-circle-check" style="color: var(--color-highlight); margin-left: 2px;"></i></p>
+                                    <span>Automático y seguro</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    <!-- 4. SECCIÓN INFERIOR (BOTTOM BAR - 4 BADGES) -->
+                    <div class="vault-bottom-badges-row">
+                        <div class="vault-badge-item">
+                            <div class="vault-badge-icon"><i class="fa-solid fa-user-shield"></i></div>
+                            <div class="vault-badge-text">
+                                <h6>CIFRADO DE EXTREMO A EXTREMO</h6>
+                                <p>Tu información está 100% protegida.</p>
+                            </div>
+                        </div>
+                        <div class="vault-badge-item">
+                            <div class="vault-badge-icon"><i class="fa-solid fa-key"></i></div>
+                            <div class="vault-badge-text">
+                                <h6>ACCESO PRIVADO</h6>
+                                <p>Solo tú tienes la llave de nuestro mundo.</p>
+                            </div>
+                        </div>
+                        <div class="vault-badge-item">
+                            <div class="vault-badge-icon"><i class="fa-solid fa-infinity"></i></div>
+                            <div class="vault-badge-text">
+                                <h6>GUARDADO PERMANENTE</h6>
+                                <p>Nuestro amor, para siempre.</p>
+                            </div>
+                        </div>
+                        <div class="vault-badge-item">
+                            <div class="vault-badge-icon"><i class="fa-solid fa-cloud"></i></div>
+                            <div class="vault-badge-text">
+                                <h6>RESPALDO AUTOMÁTICO</h6>
+                                <p>Para que nunca perdamos nada importante.</p>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Contenido Oculto de la Promesa (Hydrated al autenticarse) -->
-                    <div id="vault-promise-view" style="display: none;">
-                        <!-- Inyección cinemática tras contraseña correcta -->
+                    <!-- FOOTER SUTIL DE LA BÓVEDA -->
+                    <div class="vault-footer-row">
+                        <p>♡ Hecho con amor, solo para ti. Porque tú mereces lo más seguro y hermoso del mundo. ♡</p>
                     </div>
                 </div>
             `;
@@ -1190,8 +1400,24 @@ function initFinalVaultController(sec) {
     const promiseView = sec.querySelector('#vault-promise-view');
     const vaultPanel = sec.querySelector('#sec-vault-panel');
     const themeBtn = sec.querySelector('#vault-theme-switch');
+    const eyeToggle = sec.querySelector('#vault-eye-toggle');
+    const eyeIcon = sec.querySelector('#vault-eye-icon');
 
     if (!unlockBtn || !passField || !authView || !promiseView || !vaultPanel || !themeBtn) return;
+
+    // Toggle de visibilidad de contraseña
+    if (eyeToggle && eyeIcon) {
+        eyeToggle.addEventListener('click', () => {
+            const isPass = passField.type === 'password';
+            passField.type = isPass ? 'text' : 'password';
+            
+            if (isPass) {
+                eyeIcon.className = 'fa-solid fa-eye';
+            } else {
+                eyeIcon.className = 'fa-solid fa-eye-slash';
+            }
+        });
+    }
 
     unlockBtn.addEventListener('click', () => {
         const code = passField.value.trim();
@@ -1201,10 +1427,16 @@ function initFinalVaultController(sec) {
             setTimeout(() => {
                 authView.style.display = 'none';
                 promiseView.innerHTML = `
-                    <div class="promise-scroll-text">${CONFIG_DATA.finalVault.promiseText}</div>
-                    <div class="promise-sig">${CONFIG_DATA.finalVault.signature}</div>
-                    <div style="background: rgba(255,255,255,0.01); border-top: 1px solid rgba(255,255,255,0.04); padding-top: 1rem; margin-top: 2rem; font-size: 0.65rem; font-family: monospace; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.15em;">
-                        <i class="fa-solid fa-circle-check mr-2" style="color: var(--color-highlight);"></i>Sistema Amoroso 100% Operativo. Continuará...
+                    <div style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 250px;">
+                        <div class="promise-scroll-text" style="font-family: var(--font-cursive); font-size: 1.8rem; line-height: 1.5; color: var(--color-highlight); text-shadow: 0 0 15px rgba(255, 51, 102, 0.4); margin-bottom: 2rem;">
+                            ${CONFIG_DATA.finalVault.promiseText}
+                        </div>
+                        <div class="promise-sig" style="font-family: var(--font-serif); font-size: 1.2rem; color: #fff; margin-bottom: 2rem;">
+                            — ${CONFIG_DATA.finalVault.signature}
+                        </div>
+                        <div style="background: rgba(255,255,255,0.01); border-top: 1px solid rgba(255,255,255,0.04); padding-top: 1rem; width: 100%; font-size: 0.65rem; font-family: monospace; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.15em;">
+                            <i class="fa-solid fa-circle-check mr-2" style="color: var(--color-highlight);"></i>Sistema de Amor 100% Desbloqueado y Operativo
+                        </div>
                     </div>
                 `;
                 promiseView.style.display = 'block';
@@ -1228,10 +1460,20 @@ function initFinalVaultController(sec) {
         const isNeon = document.body.classList.contains('theme-neon');
         if (isNeon) {
             document.body.className = 'theme-rose';
+            themeBtn.classList.remove('active');
         } else {
             document.body.className = 'theme-neon';
+            themeBtn.classList.add('active');
         }
     });
+
+    // Sincronizar estado inicial del interruptor del tema con el body
+    const initialIsNeon = document.body.classList.contains('theme-neon');
+    if (initialIsNeon) {
+        themeBtn.classList.add('active');
+    } else {
+        themeBtn.classList.remove('active');
+    }
 }
 
 function triggerFinalRadialExplosion() {
