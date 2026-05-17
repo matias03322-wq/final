@@ -3108,3 +3108,540 @@ body.loaded-state #main-header {
         letter-spacing: 0.4em;
     }
 }
+
+/* ==========================================================================
+   13. CENTRO DE DECISIONES INTERACTIVO (DARK MODE NEÓN ROMÁNTICO)
+   ========================================================================== */
+.decision-container {
+    width: 100%;
+    max-width: 1100px;
+    background: rgba(9, 9, 9, 0.85);
+    border: 1px solid rgba(255, 51, 102, 0.15);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 51, 102, 0.08);
+    position: relative;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    margin: 2rem auto;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.decision-header {
+    margin-bottom: 1.5rem;
+}
+
+.decision-main-title {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    color: #fff;
+    margin: 0 0 0.5rem 0;
+    text-shadow: 0 0 15px rgba(255, 51, 102, 0.35);
+}
+
+.decision-subtitle {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.55);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.decision-subtitle i {
+    color: var(--color-highlight);
+    font-size: 0.75rem;
+    filter: drop-shadow(0 0 4px var(--color-highlight));
+}
+
+/* Tabs */
+.decision-tabs-wrapper {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 50px;
+    padding: 5px;
+    display: inline-flex;
+    gap: 8px;
+    margin: 1.5rem auto 2rem auto;
+    position: relative;
+}
+
+.decision-tab-btn {
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    border-radius: 50px;
+    padding: 0.7rem 1.6rem !important;
+    color: rgba(255, 255, 255, 0.4) !important;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.decision-tab-btn i {
+    font-size: 0.95rem;
+}
+
+.decision-tab-btn.active {
+    background: rgba(255, 51, 102, 0.08) !important;
+    color: var(--color-highlight) !important;
+    border: 1px solid var(--border-accent) !important;
+    box-shadow: 0 0 15px rgba(255, 51, 102, 0.25);
+}
+
+/* Grid layout de 3 columnas */
+.decision-grid-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr 280px;
+    gap: 1.5rem;
+    align-items: stretch;
+}
+
+/* Tarjeta izquierda */
+.decision-plan-card {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    padding: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.decision-card-label-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+}
+
+.decision-card-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+}
+
+.decision-card-label-row i {
+    color: var(--color-highlight);
+    font-size: 0.85rem;
+    filter: drop-shadow(0 0 6px var(--color-highlight));
+}
+
+.decision-plan-desc {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.5;
+    margin: 1rem 0;
+}
+
+.decision-plan-hearts-img {
+    width: 125px;
+    height: auto;
+    margin: 1.2rem auto;
+    filter: drop-shadow(0 0 15px rgba(255, 51, 102, 0.45));
+    animation: hearts-float 3.5s infinite ease-in-out;
+}
+
+@keyframes hearts-float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-6px) scale(1.03); }
+}
+
+.decision-plan-quote-box {
+    border: 1px dashed rgba(255, 51, 102, 0.25);
+    background: rgba(255, 51, 102, 0.01);
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.decision-plan-quote-text {
+    font-family: var(--font-cursive);
+    font-size: 1.15rem;
+    color: var(--color-highlight);
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* Columna Central (La Ruleta) */
+.decision-wheel-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    min-height: 400px;
+    box-sizing: border-box;
+}
+
+.decision-pointer {
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 16px solid #ff3366;
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    filter: drop-shadow(0 2px 8px rgba(255, 51, 102, 0.7));
+}
+
+.decision-wheel-outer {
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    border: 4px solid var(--border-accent);
+    box-shadow: 0 0 25px rgba(255, 51, 102, 0.45);
+    position: relative;
+    background: rgba(11, 11, 11, 0.6);
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.decision-wheel-spinner {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    transition: transform 4s cubic-bezier(0.1, 0.8, 0.1, 1);
+}
+
+/* Líneas sutiles de la ruleta */
+.decision-wheel-line {
+    width: 1px;
+    height: 100%;
+    background: rgba(255, 51, 102, 0.08);
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform-origin: center;
+    pointer-events: none;
+}
+
+/* Segmentos posicionado circularmente */
+.decision-segment {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120px;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform-origin: 50% 50%;
+    text-align: center;
+    pointer-events: none;
+}
+
+.decision-segment i {
+    font-size: 1.6rem;
+    color: var(--color-highlight);
+    filter: drop-shadow(0 0 5px rgba(255, 51, 102, 0.4));
+    margin-bottom: 5px;
+    transition: transform 0.3s;
+}
+
+.decision-segment span {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+    line-height: 1.2;
+    max-width: 110px;
+}
+
+/* Botón Central */
+.decision-wheel-center-btn {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: #ff3366;
+    border: 3px solid #fff;
+    box-shadow: 0 0 20px rgba(255, 51, 102, 0.9);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff !important;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    z-index: 12;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-sizing: border-box;
+    line-height: 1.3;
+}
+
+.decision-wheel-center-btn i {
+    font-size: 0.65rem;
+    margin-top: 3px;
+    animation: heart-beat-btn 1.5s infinite;
+}
+
+@keyframes heart-beat-btn {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+
+.decision-wheel-center-btn:hover {
+    transform: translate(-50%, -50%) scale(1.08);
+    box-shadow: 0 0 25px rgba(255, 51, 102, 1);
+}
+
+.decision-wheel-center-btn:active {
+    transform: translate(-50%, -50%) scale(0.96);
+}
+
+/* Columna Derecha */
+.decision-steps-card {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    padding: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.decision-steps-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 1.5rem 0;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.decision-step-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-align: left;
+    margin-bottom: 1.2rem;
+}
+
+.decision-step-item:last-child {
+    margin-bottom: 0;
+}
+
+.decision-step-circle {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 51, 102, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-highlight);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    box-shadow: 0 0 8px rgba(255, 51, 102, 0.1);
+}
+
+.decision-step-text-col h5 {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--color-highlight);
+    margin: 0 0 2px 0;
+}
+
+.decision-step-text-col p {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.3;
+    margin: 0;
+}
+
+/* Sección Inferior (Reglas del Juego) */
+.decision-rules-card {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    padding: 1.5rem 1.8rem;
+    margin-top: 2rem;
+    box-sizing: border-box;
+}
+
+.decision-rules-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #fff;
+    margin: 0 0 1.2rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-transform: uppercase;
+}
+
+.decision-rules-title i {
+    color: var(--color-highlight);
+    font-size: 0.75rem;
+}
+
+.decision-rules-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.decision-rule-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.decision-rule-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: 15%;
+    height: 70%;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.decision-rule-icon {
+    font-size: 1.2rem;
+    color: var(--color-highlight);
+    filter: drop-shadow(0 0 5px rgba(255, 51, 102, 0.35));
+    flex-shrink: 0;
+}
+
+.decision-rule-info h6 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 2px 0;
+}
+
+.decision-rule-info p {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.4);
+    line-height: 1.3;
+    margin: 0;
+}
+
+/* Footer de Acción */
+.decision-footer-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.decision-footer-heart {
+    font-size: 1.1rem;
+    color: var(--color-highlight);
+    opacity: 0.4;
+    animation: heartbeat-glow 2.5s infinite ease-in-out;
+}
+
+.decision-footer-arrow {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.btn-decision-spin-footer {
+    background: linear-gradient(135deg, #ff3366 0%, #da1b4b 100%) !important;
+    border: none !important;
+    color: #fff !important;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    padding: 1.1rem 2.5rem !important;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 10px 25px rgba(255, 51, 102, 0.45);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-sizing: border-box;
+}
+
+.btn-decision-spin-footer:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(255, 51, 102, 0.65);
+}
+
+.btn-decision-spin-footer:active {
+    transform: translateY(1px);
+}
+
+/* Responsividad */
+@media (max-width: 950px) {
+    .decision-container {
+        padding: 1.5rem;
+        border-radius: 16px;
+        margin: 1rem auto;
+    }
+    
+    .decision-grid-layout {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .decision-rules-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .decision-rule-item:not(:last-child)::after {
+        display: none;
+    }
+}
+
+@media (max-width: 580px) {
+    .decision-rules-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .decision-wheel-outer {
+        width: 320px;
+        height: 320px;
+    }
+    
+    .decision-segment {
+        width: 100px;
+        height: 60px;
+    }
+    
+    .decision-segment span {
+        font-size: 0.65rem;
+        max-width: 90px;
+    }
+    
+    .decision-main-title {
+        font-size: 1.8rem;
+    }
+}

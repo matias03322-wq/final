@@ -500,26 +500,144 @@ function hydrateSuperSection(sec, number) {
             `;
             break;
 
-        case 8: // DECISION CENTER
+        case 8: // DECISION CENTER (RULETA INTERACTIVA MULTI-MODO)
             sec.innerHTML = `
-                <div class="glass-panel reveal-element revealed" style="padding: 3rem 2.5rem; text-align: center; max-width: 580px; width: 100%;">
-                    <h2 style="font-family: var(--font-serif); font-size: 2rem; margin-bottom: 0.5rem;">${CONFIG_DATA.decisionCenter.title}</h2>
-                    <p style="font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-bottom: 2rem;">${CONFIG_DATA.decisionCenter.subtitle}</p>
-                    
-                    <div class="decision-tabs">
-                        <button class="decision-tab-btn active" id="tab-citas">Planes de Citas</button>
-                        <button class="decision-tab-btn" id="tab-pelis">Tardes de Cine</button>
+                <div class="decision-container reveal-element revealed" id="sec-decision-panel">
+                    <!-- CABECERA PREMIUM -->
+                    <div class="decision-header">
+                        <h2 class="decision-main-title">Centro de Decisiones ♡</h2>
+                        <p class="decision-subtitle">
+                            ✨ Alterna entre nuestros minijuegos para resolver la tarde ideal ✨
+                        </p>
                     </div>
-
-                    <div class="decision-wheel-wrapper">
-                        <div class="wheel-spinner" id="decision-spinner-disk">
-                            Pulsa girar
+                    
+                    <!-- SELECTOR DE MINIJUEGOS (TABS) -->
+                    <div class="decision-tabs-wrapper">
+                        <button class="decision-tab-btn active" id="tab-citas">
+                            <i class="fa-solid fa-heart"></i> Planes de Citas
+                        </button>
+                        <button class="decision-tab-btn" id="tab-pelis">
+                            <i class="fa-solid fa-clapperboard"></i> Tardes de Cine
+                        </button>
+                    </div>
+                    
+                    <!-- PANEL PRINCIPAL (TRIPLE COLUMNA) -->
+                    <div class="decision-grid-layout">
+                        
+                        <!-- Columna Izquierda: Nuestro Plan Perfecto -->
+                        <div class="decision-plan-card">
+                            <div class="decision-card-label-row">
+                                <h4 class="decision-card-label">NUESTRO PLAN PERFECTO</h4>
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                            <p class="decision-plan-desc">Deja que el destino decida qué haremos hoy y pasemos un momento inolvidable.</p>
+                            <img class="decision-plan-hearts-img" src="smiling_3d_hearts.png" alt="Corazones 3D Sonrientes">
+                            <div class="decision-plan-quote-box">
+                                <p class="decision-plan-quote-text">"No se trata del plan, se trata de nosotros. ♡"</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Columna Central: La Ruleta -->
+                        <div class="decision-wheel-card">
+                            <div class="decision-pointer"></div>
+                            <div class="decision-wheel-outer">
+                                <!-- Disco Spinner -->
+                                <div class="decision-wheel-spinner" id="decision-spinner-disk">
+                                    <!-- Líneas de los sectores sutiles -->
+                                    <div class="decision-wheel-line" style="transform: rotate(30deg);"></div>
+                                    <div class="decision-wheel-line" style="transform: rotate(90deg);"></div>
+                                    <div class="decision-wheel-line" style="transform: rotate(150deg);"></div>
+                                    
+                                    <!-- Contenedor dinámico de los 6 segmentos -->
+                                    <div id="wheel-segments-container"></div>
+                                </div>
+                                
+                                <!-- Botón central -->
+                                <div class="decision-wheel-center-btn" id="btn-spin-wheel-center">
+                                    <span>Pulsa<br>girar</span>
+                                    <i class="fa-solid fa-heart"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Columna Derecha: ¿Cómo funciona? -->
+                        <div class="decision-steps-card">
+                            <h4 class="decision-steps-title">¿CÓMO FUNCIONA?</h4>
+                            
+                            <div class="decision-step-item">
+                                <div class="decision-step-circle"><i class="fa-solid fa-heart"></i></div>
+                                <div class="decision-step-text-col">
+                                    <h5>1. Elige categoría</h5>
+                                    <p>Planes de citas o tardes de cine.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="decision-step-item">
+                                <div class="decision-step-circle"><i class="fa-solid fa-rotate"></i></div>
+                                <div class="decision-step-text-col">
+                                    <h5>2. Gira la ruleta</h5>
+                                    <p>Deja que el destino decida por nosotros.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="decision-step-item">
+                                <div class="decision-step-circle"><i class="fa-solid fa-star"></i></div>
+                                <div class="decision-step-text-col">
+                                    <h5>3. ¡A disfrutar!</h5>
+                                    <p>Vivamos momentos increíbles juntos. ♡</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    <!-- SECCIÓN INFERIOR: REGLAS DEL JUEGO -->
+                    <div class="decision-rules-card">
+                        <h4 class="decision-rules-title">NUESTRAS REGLAS DEL JUEGO <i class="fa-solid fa-heart"></i></h4>
+                        <div class="decision-rules-grid">
+                            <div class="decision-rule-item">
+                                <div class="decision-rule-icon"><i class="fa-regular fa-heart"></i></div>
+                                <div class="decision-rule-info">
+                                    <h6>Sin quejas</h6>
+                                    <p>Lo que salga, lo disfrutamos.</p>
+                                </div>
+                            </div>
+                            <div class="decision-rule-item">
+                                <div class="decision-rule-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                                <div class="decision-rule-info">
+                                    <h6>Actitud positiva</h6>
+                                    <p>La mejor compañía siempre somos nosotros.</p>
+                                </div>
+                            </div>
+                            <div class="decision-rule-item">
+                                <div class="decision-rule-icon"><i class="fa-solid fa-gift"></i></div>
+                                <div class="decision-rule-info">
+                                    <h6>Sorpresas</h6>
+                                    <p>A veces lo inesperado es lo mejor.</p>
+                                </div>
+                            </div>
+                            <div class="decision-rule-item">
+                                <div class="decision-rule-icon"><i class="fa-solid fa-infinity"></i></div>
+                                <div class="decision-rule-info">
+                                    <h6>Tiempo de calidad</h6>
+                                    <p>Desconectamos del mundo para conectarnos.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                    <button class="btn-glow-magenta" id="btn-spin-wheel" style="margin-top: 1rem;">
-                        <i class="fa-solid fa-rotate mr-2"></i>Girar Ruleta
-                    </button>
+                    
+                    <!-- BOTÓN DE ACCIÓN PRINCIPAL (FOOTER) -->
+                    <div class="decision-footer-row">
+                        <div class="decision-footer-heart">♡</div>
+                        <div class="decision-footer-arrow">←</div>
+                        <button class="btn-decision-spin-footer" id="btn-spin-wheel-footer">
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                            <span>GIRAR RULETA</span>
+                        </button>
+                        <div class="decision-footer-arrow">→</div>
+                        <div class="decision-footer-heart">♡</div>
+                    </div>
+                    
                 </div>
             `;
             initDecisionCenterController(sec);
@@ -1331,44 +1449,208 @@ function initDecisionCenterController(sec) {
     const tabCitas = sec.querySelector('#tab-citas');
     const tabPelis = sec.querySelector('#tab-pelis');
     const disk = sec.querySelector('#decision-spinner-disk');
-    const btn = sec.querySelector('#btn-spin-wheel');
+    const btnCenter = sec.querySelector('#btn-spin-wheel-center');
+    const btnFooter = sec.querySelector('#btn-spin-wheel-footer');
 
-    if (!tabCitas || !tabPelis || !disk || !btn) return;
+    if (!tabCitas || !tabPelis || !disk || !btnCenter || !btnFooter) return;
+
+    const CITAS_SEGMENTS = [
+        { text: 'Cena romántica', icon: 'fa-bell-concierge' },
+        { text: 'Picnic bajo las estrellas', icon: 'fa-basket-shopping' },
+        { text: 'Noche de juegos', icon: 'fa-gamepad' },
+        { text: 'Aventura sorpresa', icon: 'fa-map' },
+        { text: 'Helado y paseo', icon: 'fa-ice-cream' },
+        { text: 'Café y charla', icon: 'fa-mug-hot' }
+    ];
+
+    const PELIS_SEGMENTS = [
+        { text: 'Ciencia Ficción', icon: 'fa-user-astronaut' },
+        { text: 'Romance Clásico', icon: 'fa-heart' },
+        { text: 'Comedia Divertida', icon: 'fa-face-laugh-squint' },
+        { text: 'Terror del Bueno', icon: 'fa-ghost' },
+        { text: 'Maratón de Series', icon: 'fa-tv' },
+        { text: 'Película Animada', icon: 'fa-cat' }
+    ];
 
     let currentMode = 'citas'; // 'citas' o 'pelis'
     let currentRotation = 0;
+    let isSpinning = false;
 
+    // Renderiza dinámicamente los 6 segmentos alrededor de la ruleta
+    function renderSegments(mode) {
+        const container = sec.querySelector('#wheel-segments-container');
+        if (!container) return;
+        
+        const segments = mode === 'citas' ? CITAS_SEGMENTS : PELIS_SEGMENTS;
+        container.innerHTML = '';
+        
+        segments.forEach((seg, idx) => {
+            const angle = idx * 60;
+            const el = document.createElement('div');
+            el.className = 'decision-segment';
+            // Fórmula exacta para colocar en círculo y mantener el texto horizontal legible
+            el.style.transform = `translate(-50%, -50%) rotate(${angle}deg) translateY(-105px) rotate(-${angle}deg)`;
+            el.innerHTML = `
+                <i class="fa-solid ${seg.icon}"></i>
+                <span>${seg.text}</span>
+            `;
+            container.appendChild(el);
+        });
+    }
+
+    // Inicializar la ruleta con Planes de Citas
+    renderSegments('citas');
+
+    // Cambiar a Planes de Citas
     tabCitas.addEventListener('click', () => {
+        if (isSpinning) return;
         tabCitas.classList.add('active');
         tabPelis.classList.remove('active');
         currentMode = 'citas';
-        disk.textContent = 'Ruleta de Citas';
+        renderSegments('citas');
+        // Resetear la rotación de forma limpia
+        currentRotation = 0;
+        disk.style.transition = 'none';
+        disk.style.transform = `rotate(0deg)`;
     });
 
+    // Cambiar a Tardes de Cine
     tabPelis.addEventListener('click', () => {
+        if (isSpinning) return;
         tabPelis.classList.add('active');
         tabCitas.classList.remove('active');
         currentMode = 'pelis';
-        disk.textContent = 'Ruleta de Películas';
+        renderSegments('pelis');
+        // Resetear la rotación de forma limpia
+        currentRotation = 0;
+        disk.style.transition = 'none';
+        disk.style.transform = `rotate(0deg)`;
     });
 
-    btn.addEventListener('click', () => {
-        const options = currentMode === 'citas' 
-            ? CONFIG_DATA.decisionCenter.optionsCitas 
-            : CONFIG_DATA.decisionCenter.optionsPelis;
+    // Función unificada de giro
+    function spinWheel() {
+        if (isSpinning) return;
+        isSpinning = true;
 
-        const extraRot = Math.floor(Math.random() * 5) * 360 + 1440; // Mínimo 4 vueltas completas
-        currentRotation += extraRot;
+        // Desactivar UI interactiva
+        btnCenter.style.pointerEvents = 'none';
+        btnFooter.style.pointerEvents = 'none';
+        btnFooter.classList.add('disabled');
+        tabCitas.style.opacity = '0.5';
+        tabPelis.style.opacity = '0.5';
 
+        // Cambiar textos de estado
+        btnCenter.innerHTML = `<span>Girando...</span><i class="fa-solid fa-spinner fa-spin"></i>`;
+        const btnFooterText = btnFooter.querySelector('span');
+        if (btnFooterText) btnFooterText.textContent = 'GIRANDO...';
+
+        // Elegir un sector ganador (0 a 5)
+        const targetSector = Math.floor(Math.random() * 6);
+        
+        // Calcular el ángulo final requerido para que el sector ganador apunte a la parte superior (0 grados)
+        // La fórmula exacta para que el sector quede alineado con el puntero es: (6 - targetSector) % 6 * 60
+        const finalAngleMod = ((6 - targetSector) % 6) * 60;
+        
+        // Mínimo 5 vueltas completas (1800 grados) + el ángulo del sector
+        const extraRotations = 1800 + Math.floor(Math.random() * 3) * 360;
+        
+        // Asegurar que siempre rote hacia adelante de forma acumulativa
+        const currentBase = Math.ceil(currentRotation / 360) * 360;
+        currentRotation = currentBase + extraRotations + finalAngleMod;
+
+        // Aplicar rotación con transición suave
+        disk.style.transition = 'transform 4s cubic-bezier(0.1, 0.8, 0.1, 1)';
         disk.style.transform = `rotate(${currentRotation}deg)`;
-        disk.textContent = 'Girando...';
 
         setTimeout(() => {
-            const finalChoice = options[Math.floor(Math.random() * options.length)];
-            disk.textContent = finalChoice;
+            isSpinning = false;
+
+            // Reactivar UI
+            btnCenter.style.pointerEvents = 'auto';
+            btnFooter.style.pointerEvents = 'auto';
+            btnFooter.classList.remove('disabled');
+            tabCitas.style.opacity = '1';
+            tabPelis.style.opacity = '1';
+
+            // Restaurar textos de los botones
+            btnCenter.innerHTML = `<span>Pulsa<br>girar</span><i class="fa-solid fa-heart"></i>`;
+            if (btnFooterText) btnFooterText.textContent = 'GIRAR RULETA';
+
+            // Obtener el plan ganador
+            const segments = currentMode === 'citas' ? CITAS_SEGMENTS : PELIS_SEGMENTS;
+            const winner = segments[targetSector];
+
+            // Lanzar partículas mágicas de victoria
             triggerWheelSparks();
+
+            // Mostrar el plan ganador en un precioso modal/alerta flotante premium temporal
+            showWinnerAlert(winner.text, winner.icon);
         }, 4000);
-    });
+    }
+
+    btnCenter.addEventListener('click', spinWheel);
+    btnFooter.addEventListener('click', spinWheel);
+
+    // Alerta Premium flotante para el ganador
+    function showWinnerAlert(text, icon) {
+        // Eliminar alerta previa si existe
+        const existing = document.querySelector('.decision-winner-alert');
+        if (existing) existing.remove();
+
+        const alert = document.createElement('div');
+        alert.className = 'decision-winner-alert';
+        alert.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background: rgba(9, 9, 9, 0.95);
+            border: 2px solid var(--color-highlight);
+            box-shadow: 0 0 40px rgba(255, 51, 102, 0.6);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            z-index: 9999;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            max-width: 380px;
+            width: 90%;
+        `;
+
+        alert.innerHTML = `
+            <div style="font-size: 3.2rem; color: var(--color-highlight); margin-bottom: 1rem; filter: drop-shadow(0 0 10px rgba(255, 51, 102, 0.5));">
+                <i class="fa-solid ${icon}"></i>
+            </div>
+            <h3 style="font-family: var(--font-serif); font-size: 1.6rem; color: #fff; margin-bottom: 0.5rem;">¡El Destino ha decidido!</h3>
+            <p style="font-size: 0.82rem; color: rgba(255,255,255,0.5); margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.05em;">Haremos hoy:</p>
+            <div style="font-size: 1.4rem; font-weight: 700; color: #fff; background: rgba(255, 51, 102, 0.1); border: 1px solid rgba(255, 51, 102, 0.25); border-radius: 12px; padding: 1rem; margin-bottom: 1.8rem; text-shadow: 0 0 8px rgba(255,255,255,0.3);">
+                ${text} ✨
+            </div>
+            <button id="btn-close-winner-alert" style="background: var(--color-highlight); border: none; color: #fff; font-weight: 700; font-size: 0.85rem; padding: 0.8rem 2rem; border-radius: 50px; cursor: pointer; box-shadow: 0 5px 15px rgba(255, 51, 102, 0.4); transition: all 0.3s;">
+                ¡Me encanta el plan! ♡
+            </button>
+        `;
+
+        document.body.appendChild(alert);
+
+        // Forzar reflow y animar entrada
+        setTimeout(() => {
+            alert.style.opacity = '1';
+            alert.style.transform = 'translate(-50%, -50%) scale(1)';
+        }, 50);
+
+        // Sonido o vibración simulada si es posible
+        if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
+
+        const closeBtn = alert.querySelector('#btn-close-winner-alert');
+        closeBtn.addEventListener('click', () => {
+            alert.style.opacity = '0';
+            alert.style.transform = 'translate(-50%, -50%) scale(0.8)';
+            setTimeout(() => alert.remove(), 400);
+        });
+    }
 }
 
 function triggerWheelSparks() {
