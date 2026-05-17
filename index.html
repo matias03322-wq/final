@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antigravity Love — Super-Componentes Dinámicos</title>
+    
+    <!-- Favicon Premium (Neon Heart SVG Base64 Encoded for Maximum Compatibility) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBmaWxsPSJub25lIj48ZGVmcz48ZmlsdGVyIGlkPSJnbG93IiB4PSItMjAlIiB5PSItMjAlIiB3aWR0aD0iMTQwJSIgaGVpZ2h0PSIxNDAlIj48ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIzLjUiIHJlc3VsdD0iYmx1ciIvPjxmZU1lcmdlPjxmZU1lcmdlTm9kZSBpbj0iYmx1ciIvPjxmZU1lcmdlTm9kZSBpbj0iU291cmNlR3JhcGhpYyIvPjwvZmVNZXJnZT48L2ZpbHRlcj48L2RlZnM+PHBhdGggZD0iTSA1MCw4NSBDIDI4LDcwIDE1LDUyIDE1LDM2IEMgMTUsMjIgMjUsMTQgMzYsMTggQyA0MiwyMCA0NiwyNiA0OCwzMCBDIDUwLDMxIDUwLDMxIDUyLDMwIEMgNTQsMjYgNTgsMjAgNjQsMTggQyA3NSwxNCA4NSwyMiA4NSwzNiBDIDg1LDUyIDcyLDcwIDUwLDg1IFoiIHN0cm9rZT0iI2ZmNjliNCIgc3Ryb2tlLXdpZHRoPSI1LjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZmlsdGVyPSJ1cmwoI2dsb3cpIi8+PGNpcmNsZSBjeD0iMzgiIGN5PSIxNCIgcj0iNS41IiBmaWxsPSIjZmY2OWI0IiBmaWx0ZXI9InVybCgjZ2xvdykiLz48Y2lyY2xlIGN4PSI2MiIgY3k9IjE0IiByPSI1LjUiIGZpbGw9IiNmZjY5YjQiIGZpbHRlcj0idXJsKCNnbG93KSIvPjwvc3ZnPg==">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Una simulación de física afectiva estructurada en 9 Super-Componentes de alto rendimiento y múltiples estados.">
+    <meta name="keywords" content="sci-fi, romance, WebGL, 9 super-módulos, glassmorphism, antigravedad">
+    <meta name="author" content="Antigravity">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome CDN para iconos premium -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Estilos Principales -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="theme-rose">
+
+    <!-- 💖 Cabecera Premium: Navegación y Branding -->
+    <header id="main-header">
+        <div class="header-container">
+            <div class="logo-branding-container">
+                <div class="logo-icons-col">
+                    <div class="logo-heart-wrapper">
+                        <svg class="header-logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Neon pink heart outline -->
+                            <path d="M 50,85 C 28,70 15,52 15,36 C 15,22 25,14 36,18 C 42,20 46,26 48,30 C 50,31 50,31 52,30 C 54,26 58,20 64,18 C 75,14 85,22 85,36 C 85,52 72,70 50,85 Z" stroke="#ff69b4" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+                            <!-- Two heads (circles) representing a couple -->
+                            <circle cx="38" cy="14" r="5.5" fill="#ff69b4" filter="url(#glow)"/>
+                            <circle cx="62" cy="14" r="5.5" fill="#ff69b4" filter="url(#glow)"/>
+                            <defs>
+                                <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feGaussianBlur stdDeviation="3.5" result="blur"/>
+                                    <feMerge>
+                                        <feMergeNode in="blur"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="logo-sparkle-wrapper">
+                        <svg class="header-sparkle-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Main 4-pointed star with radial gradient fill -->
+                            <path d="M 50,12 Q 50,50 12,50 Q 50,50 50,88 Q 50,50 88,50 Q 50,50 50,12 Z" fill="url(#star-grad)" filter="url(#gold-glow)"/>
+                            <!-- Secondary small star -->
+                            <path d="M 78,28 Q 78,40 66,40 Q 78,40 78,52 Q 78,40 90,40 Q 78,40 78,28 Z" fill="url(#star-grad)" opacity="0.85" filter="url(#gold-glow)"/>
+                            <!-- Smallest sparkle dot -->
+                            <circle cx="30" cy="28" r="3" fill="#ffffff" opacity="0.8" filter="url(#gold-glow)"/>
+                            <defs>
+                                <radialGradient id="star-grad" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stop-color="#ffffff"/>
+                                    <stop offset="35%" stop-color="#ffeaad"/>
+                                    <stop offset="100%" stop-color="#ffc83b"/>
+                                </radialGradient>
+                                <filter id="gold-glow" x="-30%" y="-30%" width="160%" height="160%">
+                                    <feGaussianBlur stdDeviation="4" result="blur"/>
+                                    <feMerge>
+                                        <feMergeNode in="blur"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+                <div class="logo-text-col">
+                    <div class="logo-title">Para Ti</div>
+                    <div class="logo-subtitle">
+                        <span>AMOR</span><span class="dot">•</span><span>CONEXIÓN</span><span class="dot">•</span><span>PARA SIEMPRE</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu Toggle Button (Hamburger) -->
+            <button class="mobile-nav-toggle" aria-label="Abrir menú de navegación">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <!-- Navigation Menu -->
+            <nav class="header-nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#sec-1" class="nav-link active" data-sec="1">Inicio</a></li>
+                    <li class="nav-item"><a href="#sec-2" class="nav-link" data-sec="2">Tiempo</a></li>
+                    <li class="nav-item"><a href="#sec-3" class="nav-link" data-sec="3">Galería</a></li>
+                    <li class="nav-item"><a href="#sec-4" class="nav-link" data-sec="4">Buzón</a></li>
+                    <li class="nav-item"><a href="#sec-5" class="nav-link" data-sec="5">Razones</a></li>
+                    <li class="nav-item"><a href="#sec-6" class="nav-link" data-sec="6">Consola</a></li>
+                    <li class="nav-item"><a href="#sec-7" class="nav-link" data-sec="7">Vales</a></li>
+                    <li class="nav-item"><a href="#sec-8" class="nav-link" data-sec="8">Decisor</a></li>
+                    <li class="nav-item"><a href="#sec-9" class="nav-link" data-sec="9">Futuro</a></li>
+                    <li class="nav-item"><a href="#sec-10" class="nav-link" data-sec="10">Bóveda</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 🌌 Pantalla de Carga Inicial Cinematic -->
+    <div id="loader-screen">
+        <div class="loader-beating-heart">
+            <i class="fa-solid fa-heart-pulse"></i>
+        </div>
+        <div class="loader-bar-container">
+            <div class="loader-bar-fill" id="loader-bar-fill"></div>
+        </div>
+        <div class="loader-status-text" id="loader-status-text">Inicializando Núcleo... [0%]</div>
+    </div>
+
+    <!-- 🌌 Contenedor de Antigravedad de Fondo (Partículas y Elementos Flotantes) -->
+    <div id="antigravity-container"></div>
+
+    <!-- 🏷️ Indicador de Progreso de Super-Componentes (1/09) -->
+    <div id="scroll-progress-panel">
+        <div class="scroll-progress-number" id="progress-number">01 / 10</div>
+        <div class="scroll-progress-module" id="progress-module">Portada: Bienvenida</div>
+        <div class="back-to-top-btn" id="btn-back-to-top">
+            <i class="fa-solid fa-circle-arrow-up"></i> Volver al Inicio
+        </div>
+    </div>
+
+    <!-- 🔄 Contenedor Global de Snap Scroll (10 Super-Módulos de Máxima Performance) -->
+    <main id="scroll-container">
+        <section id="sec-1" class="snap-section" data-loaded="false"></section>
+        <section id="sec-2" class="snap-section" data-loaded="false"></section>
+        <section id="sec-3" class="snap-section" data-loaded="false"></section>
+        <section id="sec-4" class="snap-section" data-loaded="false"></section>
+        <section id="sec-5" class="snap-section" data-loaded="false"></section>
+        <section id="sec-6" class="snap-section" data-loaded="false"></section>
+        <section id="sec-7" class="snap-section" data-loaded="false"></section>
+        <section id="sec-8" class="snap-section" data-loaded="false"></section>
+        <section id="sec-9" class="snap-section" data-loaded="false"></section>
+        <section id="sec-10" class="snap-section" data-loaded="false"></section>
+    </main>
+
+    <!-- Base de Datos y Motor de Inyección Dinámica -->
+    <script src="data.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
