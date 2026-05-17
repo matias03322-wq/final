@@ -547,24 +547,126 @@ function hydrateSuperSection(sec, number) {
             initReasonsDeckController(sec);
             break;
 
-        case 6: // SYSTEM CONSOLE
+        case 6: // SYSTEM CONSOLE (CONSOLA DEL SISTEMA NEÓN ROMÁNTICA)
             sec.innerHTML = `
-                <div class="glass-panel terminal-card reveal-element revealed">
-                    <div class="terminal-header">
-                        <span class="terminal-title-text">> ${CONFIG_DATA.systemConsole.title} - OPERACIÓN ESTABLE</span>
-                        <div class="terminal-buttons">
-                            <div class="term-btn term-btn-red"></div>
-                            <div class="term-btn term-btn-yellow"></div>
-                            <div class="term-btn term-btn-green"></div>
+                <div class="console-section-wrapper reveal-element revealed" id="sec-console-panel">
+                    <!-- 1. Cabecera (Header) -->
+                    <div class="console-header">
+                        <h2 class="console-title">
+                            <span class="console-title-heart">💖</span>
+                            <span>Consola del Sistema</span>
+                            <span class="console-title-dot">•</span>
+                            <span class="console-title-status">OPERACIÓN ESTABLE</span>
+                            <span class="console-title-heart">💖</span>
+                        </h2>
+                        <p class="console-subtitle">Monitoreando nuestro amor en tiempo real ♡</p>
+                    </div>
+
+                    <!-- 2. Ventana Principal de la Consola -->
+                    <div class="console-window">
+                        
+                        <!-- Barra de Título (Top Bar) -->
+                        <div class="console-top-bar">
+                            <div class="console-top-left">
+                                <i class="fa-solid fa-terminal"></i>
+                                <span>AMOR SERVER v2.6.5 · OPERACIÓN ESTABLE</span>
+                            </div>
+                            <div class="console-top-right">
+                                <span class="console-mac-dot mac-red"></span>
+                                <span class="console-mac-dot mac-yellow"></span>
+                                <span class="console-mac-dot mac-green"></span>
+                            </div>
                         </div>
+
+                        <!-- Cuerpo de la Consola (2 Columnas) -->
+                        <div class="console-body-grid">
+                            
+                            <!-- Columna Izquierda: Líneas de Comando -->
+                            <div class="console-logs-column" id="terminal-logs-container">
+                                <!-- Inyectado dinámicamente con efecto de carga hacker -->
+                            </div>
+
+                            <!-- Columna Derecha: Tarjetas de Monitoreo -->
+                            <div class="console-monitoring-column">
+                                
+                                <!-- Tarjeta 1: ESTADO DEL SISTEMA -->
+                                <div class="monitoring-card">
+                                    <div class="monitoring-card-header">
+                                        <span class="monitoring-card-title">ESTADO DEL SISTEMA</span>
+                                    </div>
+                                    <div class="status-card-body">
+                                        <span class="status-card-heart">💖</span>
+                                        <div class="status-card-info">
+                                            <span class="status-card-percentage">100%</span>
+                                            <span class="status-card-operativo">OPERATIVO</span>
+                                        </div>
+                                    </div>
+                                    <p class="status-card-desc">Todo funcionando perfectamente. Gracias a ti. ♡</p>
+                                </div>
+
+                                <!-- Tarjeta 2: FRECUENCIA DE LATIDOS -->
+                                <div class="monitoring-card">
+                                    <div class="monitoring-card-header">
+                                        <span class="monitoring-card-title">FRECUENCIA DE LATIDOS</span>
+                                        <span class="monitoring-card-icon"><i class="fa-solid fa-heart"></i></span>
+                                    </div>
+                                    <!-- Gráfica SVG de electrocardiograma ECG -->
+                                    <div class="pulse-svg-container">
+                                        <svg viewBox="0 0 300 60" style="width:100%; height:100%;">
+                                            <path class="pulse-line" d="M0,30 L60,30 L70,30 L80,10 L90,50 L100,25 L105,35 L115,30 L180,30 L190,30 L200,10 L210,50 L220,25 L225,35 L235,30 L300,30"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="pulse-card-footer">
+                                        72 lpm · <span class="pulse-card-stable">ESTABLE</span>
+                                    </div>
+                                </div>
+
+                                <!-- Tarjeta 3: CONEXIÓN -->
+                                <div class="monitoring-card">
+                                    <div class="monitoring-card-header">
+                                        <span class="monitoring-card-title">CONEXIÓN</span>
+                                    </div>
+                                    <div class="connection-card-body">
+                                        <div class="connection-card-text">
+                                            <span class="connection-secure-title">TLS 1.3 SECURE</span>
+                                            <span class="connection-secure-subtitle">Encriptado con amor verdadero ♡</span>
+                                        </div>
+                                        <i class="fa-solid fa-lock connection-lock-icon"></i>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Barra de Estado Inferior -->
+                        <div class="console-status-bar">
+                            <div class="status-bar-item">
+                                <i class="fa-solid fa-shield-halved"></i>
+                                <span>CONEXIÓN: TLS 1.3 SECURE</span>
+                            </div>
+                            <div class="status-bar-item status-bar-uptime">
+                                <i class="fa-solid fa-heart"></i>
+                                <span>UPTIME: DESDE QUE TE CONOCÍ</span>
+                            </div>
+                            <div class="status-bar-item status-bar-right">
+                                <span>STATUS: AMOR 100% OPERATIVO</span>
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="terminal-body" id="sec-terminal-console-body">
-                        [INICIANDO SECUENCIAS...]
-                    </div>
-                    <!-- Status de Lealtad -->
-                    <div style="background: rgba(255,255,255,0.01); padding: 0.8rem 1.5rem; border-top: 1px solid rgba(255,255,255,0.03); display: flex; justify-content: space-between; font-size: 0.72rem; color: rgba(255,255,255,0.4); font-family: monospace;">
-                        <span>CONEXIÓN: TLS 1.3 SECURE</span>
-                        <span>STATUS: AMOR 100% OPERATIVO</span>
+
+                    <!-- 5. Footer Externa (Cita Final) -->
+                    <div class="console-footer-external">
+                        <span class="console-footer-quotes">“</span>
+                        <p class="console-footer-text">
+                            Eres la razón por la que este sistema nunca se apaga. <span class="footer-heart">💖</span>
+                        </p>
+                        <!-- Icono flotante de sobre con un corazón -->
+                        <div class="console-floating-envelope">
+                            <i class="fa-regular fa-envelope-open"></i>
+                        </div>
                     </div>
                 </div>
             `;
@@ -1610,23 +1712,59 @@ function initReasonsDeckController(sec) {
 }
 
 // Consola de Diagnóstico
+// Consola de Diagnóstico (Hacker Terminal & Dark Mode Neón Romántico)
 function initSystemConsoleController(sec) {
-    const body = sec.querySelector('#sec-terminal-console-body');
-    if (!body) return;
-    body.innerHTML = '';
+    const container = sec.querySelector('#terminal-logs-container');
+    if (!container) return;
+    container.innerHTML = '';
 
-    const logs = CONFIG_DATA.systemConsole.logs;
+    const LOGS = [
+        { emoji: '💖', text: 'Inicializando Amor Server v2.6.5...', status: '[OK]' },
+        { emoji: '☁️', text: 'Conectando clúster MongoDB Atlas (Cluster: Corazon_Principal)...', status: '[CONECTADO]' },
+        { emoji: '🔒', text: 'Verificando canal seguro de lealtad TLS 1.3...', status: '[SEGURO]' },
+        { emoji: '💓', text: 'Monitoreando frecuencia de latidos... 72 lpm', status: '[ESTABLE]' },
+        { emoji: '✨', text: 'Cargando variables de confianza y mimos... 100%', status: '[COMPLETO]' },
+        { emoji: '🧠', text: 'Diagnóstico del núcleo: Sistema amoroso operando con 0% de desconexión.', status: '' },
+        { emoji: '🔄', text: 'Sincronizando recuerdos hermosos...', status: '[ACTUALIZADO]' },
+        { emoji: '💌', text: 'Buzón cuántico preparado para nuevas cartas...', status: '[LISTO]' },
+        { emoji: '🛡️', text: 'Protección activa contra: EGO, ORGULLO, DISTANCIA', status: '[BLOQUEADO]' },
+        { emoji: '🌙', text: 'Modo nocturno de protección: Te pienso', status: '[ACTIVO]' },
+        { emoji: '💖', text: 'Estado general: NUESTRO AMOR ESTÁ MÁS FUERTE CADA DÍA', status: '[✨]' }
+    ];
+
     let idx = 0;
 
     function printRow() {
-        if (!sec.isConnected || idx >= logs.length) return;
+        // Validación ultra-robusta usando presencia directa en el DOM del contenedor de logs
+        const activeContainer = document.getElementById('terminal-logs-container');
+        if (!activeContainer || idx >= LOGS.length) return;
+        
+        const log = LOGS[idx];
         const row = document.createElement('div');
-        row.textContent = `> ${logs[idx]}`;
-        row.style.marginBottom = '6px';
-        body.appendChild(row);
+        row.className = 'terminal-log-row';
+
+        let dotsHTML = '';
+        let statusHTML = '';
+        if (log.status) {
+            dotsHTML = `<span class="log-dots"></span>`;
+            statusHTML = `<span class="log-status">${log.status}</span>`;
+        }
+
+        row.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="log-prefix">&gt;</span>
+                <span class="log-emoji">${log.emoji}</span>
+                <span class="log-text">${log.text}</span>
+            </div>
+            ${dotsHTML}
+            ${statusHTML}
+        `;
+
+        activeContainer.appendChild(row);
         idx++;
-        setTimeout(printRow, 600);
+        setTimeout(printRow, 500); // Impresión progresiva hacker a 500ms
     }
+
     printRow();
 }
 

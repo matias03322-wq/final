@@ -144,7 +144,12 @@ const CONFIG_DATA = {
             'Verificando canal seguro de lealtad TLS 1.3... [SEGURO]',
             'Monitoreando frecuencia de latidos... 72 lpm [ESTABLE]',
             'Cargando variables de confianza y mimos... 100% [COMPLETO]',
-            'Diagnóstico del núcleo: Sistema amoroso operando con 0% de desconexión.'
+            'Diagnóstico del núcleo: Sistema amoroso operando con 0% de desconexión.',
+            'Sincronizando recuerdos hermosos... [ACTUALIZADO]',
+            'Buzón cuántico preparado para nuevas cartas... [LISTO]',
+            'Protección activa contra: EGO, ORGULLO, DISTANCIA [BLOQUEADO]',
+            'Modo nocturno de protección: Te pienso [ACTIVO]',
+            'Estado general: NUESTRO AMOR ESTÁ MÁS FUERTE CADA DÍA [✨]'
         ]
     },
 

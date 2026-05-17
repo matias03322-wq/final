@@ -4160,10 +4160,478 @@ body.loaded-state #main-header {
     -webkit-backdrop-filter: blur(5px);
 }
 
-.quantum-footer-quote span {
-    font-size: 0.82rem;
-    color: rgba(255, 255, 255, 0.6);
-    letter-spacing: 0.02em;
+    .quantum-footer-quote span {
+        font-size: 0.75rem;
+    }
+}
+
+/* ==========================================================================
+   15. CONSOLA DEL SISTEMA (HACKER TERMINAL & DARK MODE NEÓN ROMÁNTICO)
+   ========================================================================== */
+.console-section-wrapper {
+    width: 100%;
+    max-width: 1100px;
+    margin: 2rem auto;
+    position: relative;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+/* Cabecera (Header) */
+.console-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.console-title {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    color: #fff;
+    margin: 0 0 0.5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    text-shadow: 0 0 15px rgba(255, 51, 102, 0.2);
+}
+
+.console-title-heart {
+    color: var(--color-highlight);
+    filter: drop-shadow(0 0 6px var(--color-highlight));
+    font-size: 2rem;
+    animation: heart-pulse-fast 1.6s infinite ease-in-out;
+}
+
+@keyframes heart-pulse-fast {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+}
+
+.console-title-dot {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.console-title-status {
+    font-family: monospace;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--color-highlight);
+    text-shadow: 0 0 12px rgba(255, 51, 102, 0.75);
+    letter-spacing: 0.05em;
+}
+
+.console-subtitle {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+}
+
+/* Ventana Principal de la Consola */
+.console-window {
+    width: 100%;
+    background: #111111;
+    border: 1px solid rgba(255, 51, 102, 0.25);
+    border-radius: 16px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 35px rgba(255, 51, 102, 0.12);
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Barra de título (Top Bar) */
+.console-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.9rem 1.4rem;
+    background: #0d0d0d;
+    border-bottom: 1px solid rgba(255, 51, 102, 0.1);
+}
+
+.console-top-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: monospace;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--color-highlight);
+    text-shadow: 0 0 5px rgba(255, 51, 102, 0.3);
+}
+
+.console-top-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.console-mac-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+.mac-red { background: #ff5f56; }
+.mac-yellow { background: #ffbd2e; }
+.mac-green { background: #27c93f; }
+
+/* Cuerpo de la Consola (2 Columnas) */
+.console-body-grid {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr;
+    gap: 1.8rem;
+    padding: 1.8rem;
+    box-sizing: border-box;
+}
+
+/* Columna Izquierda (Líneas de Comando) */
+.console-logs-column {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+
+.terminal-log-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.5;
+}
+
+.log-prefix {
+    color: var(--color-highlight);
+    margin-right: 6px;
+    font-weight: bold;
+}
+
+.log-text {
+    flex-shrink: 0;
+}
+
+.log-dots {
+    flex-grow: 1;
+    border-bottom: 1px dotted rgba(255, 51, 102, 0.22);
+    margin: 0 8px 4px 8px;
+}
+
+.log-status {
+    color: var(--color-highlight);
+    font-weight: bold;
+    text-shadow: 0 0 8px rgba(255, 51, 102, 0.7);
+    flex-shrink: 0;
+}
+
+.log-status-stable {
+    color: var(--color-highlight);
+    text-shadow: 0 0 8px rgba(255, 51, 102, 0.7);
+}
+
+/* Columna Derecha (Tarjetas de Monitoreo) */
+.console-monitoring-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.monitoring-card {
+    background: #181818;
+    border: 1px solid rgba(255, 51, 102, 0.12);
+    border-radius: 12px;
+    padding: 1.2rem;
+    font-family: monospace;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s;
+    box-sizing: border-box;
+}
+
+.monitoring-card:hover {
+    border-color: rgba(255, 51, 102, 0.3);
+    box-shadow: 0 0 15px rgba(255, 51, 102, 0.05);
+}
+
+.monitoring-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.monitoring-card-title {
+    font-size: 0.78rem;
+    font-weight: bold;
+    color: var(--color-highlight);
+    text-shadow: 0 0 4px rgba(255, 51, 102, 0.15);
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.monitoring-card-icon {
+    font-size: 0.8rem;
+    color: var(--color-highlight);
+    filter: drop-shadow(0 0 3px var(--color-highlight));
+}
+
+/* Tarjeta 1 - Estado del Sistema */
+.status-card-body {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 1rem;
+}
+
+.status-card-heart {
+    font-size: 2.8rem;
+    color: var(--color-highlight);
+    filter: drop-shadow(0 0 12px rgba(255, 51, 102, 0.8));
+    animation: heart-shimmer 1.4s infinite ease-in-out;
+}
+
+.status-card-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.status-card-percentage {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.status-card-operativo {
+    font-size: 0.78rem;
+    font-weight: bold;
+    color: var(--color-highlight);
+    letter-spacing: 0.1em;
+}
+
+.status-card-desc {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.45);
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Tarjeta 2 - Frecuencia de Latidos */
+.pulse-svg-container {
+    width: 100%;
+    height: 60px;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.pulse-line {
+    stroke: var(--color-highlight);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    filter: drop-shadow(0 0 6px var(--color-highlight));
+    animation: pulse-glow 2s infinite ease-in-out;
+}
+
+@keyframes pulse-glow {
+    0%, 100% { filter: drop-shadow(0 0 4px rgba(255, 51, 102, 0.6)); opacity: 0.85; }
+    50% { filter: drop-shadow(0 0 12px rgba(255, 51, 102, 1)); opacity: 1; }
+}
+
+.pulse-card-footer {
+    font-size: 0.76rem;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.pulse-card-stable {
+    color: #27c93f !important;
+    font-weight: bold;
+    text-shadow: 0 0 6px rgba(39, 201, 63, 0.6);
+}
+
+/* Tarjeta 3 - Conexión */
+.connection-card-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.connection-card-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.connection-secure-title {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.connection-secure-subtitle {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.connection-lock-icon {
+    font-size: 1.8rem;
+    color: var(--color-highlight);
+    filter: drop-shadow(0 0 8px var(--color-highlight));
+    animation: lock-shimmer 2.5s infinite ease-in-out;
+}
+
+@keyframes lock-shimmer {
+    0%, 100% { filter: drop-shadow(0 0 8px rgba(255,51,102,0.8)); transform: scale(1); }
+    50% { filter: drop-shadow(0 0 15px rgba(255,51,102,1)); transform: scale(1.05); }
+}
+
+/* Barra de Estado Inferior (Status Bar) */
+.console-status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.9rem 1.8rem;
+    background: #0d0d0d;
+    border-top: 1px solid rgba(255, 51, 102, 0.1);
+    font-family: monospace;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.4);
+    box-sizing: border-box;
+}
+
+.status-bar-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.status-bar-item i {
+    font-size: 0.75rem;
+}
+
+.status-bar-uptime {
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(255, 51, 102, 0.3);
+}
+
+.status-bar-uptime i {
+    color: var(--color-highlight);
+    filter: drop-shadow(0 0 3px var(--color-highlight));
+}
+
+.status-bar-right i {
+    color: var(--color-highlight);
+}
+
+/* Footer Externa (Cita Final) */
+.console-footer-external {
+    width: 100%;
+    max-width: 820px;
+    margin: 2rem auto 0 auto;
+    background: #0d0d0d;
+    border: 1px solid rgba(255, 51, 102, 0.15);
+    border-radius: 12px;
+    padding: 1.2rem 2.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    box-sizing: border-box;
+}
+
+.console-footer-quotes {
+    color: var(--color-highlight);
+    font-size: 1.6rem;
+    margin-right: 12px;
+    line-height: 1;
+    filter: drop-shadow(0 0 4px var(--color-highlight));
+}
+
+.console-footer-text {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.console-footer-text .footer-heart {
+    color: var(--color-highlight);
+    filter: drop-shadow(0 0 3px var(--color-highlight));
+    font-size: 0.85rem;
+}
+
+/* Floating decor styles for console */
+.console-floating-envelope {
+    position: absolute;
+    right: -45px;
+    top: 50%;
+    transform: translateY(-50%) rotate(12deg);
+    font-size: 2.2rem;
+    color: rgba(255, 51, 102, 0.25);
+    filter: drop-shadow(0 0 4px rgba(255, 51, 102, 0.1));
+    pointer-events: none;
+    animation: float-slow-1 8s infinite ease-in-out;
+}
+
+/* Responsive terminal styles */
+@media (max-width: 950px) {
+    .console-body-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .console-floating-envelope {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .console-title {
+        font-size: 1.8rem;
+    }
+    
+    .console-title-status {
+        font-size: 1.2rem;
+    }
+    
+    .console-window {
+        border-radius: 12px;
+    }
+    
+    .console-body-grid {
+        padding: 1.2rem;
+        gap: 1.5rem;
+    }
+    
+    .console-status-bar {
+        flex-direction: column;
+        gap: 8px;
+        padding: 1.2rem;
+        text-align: center;
+    }
+    
+    .terminal-log-row {
+        font-size: 0.74rem;
+    }
+    
+    .console-footer-external {
+        padding: 1rem 1.4rem;
+    }
+    
+    .console-footer-text {
+        font-size: 0.82rem;
+    }
 }
 
 .quantum-footer-divider {
