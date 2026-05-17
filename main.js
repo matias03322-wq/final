@@ -525,26 +525,40 @@ function hydrateSuperSection(sec, number) {
             initDecisionCenterController(sec);
             break;
 
-        case 9: // FUTURE MAP
+        case 9: // FUTURE MAP (Diseño idéntico a Memory Hub)
             sec.innerHTML = `
-                <div class="glass-panel reveal-element revealed" style="padding: 3rem 2rem; text-align: center; max-width: 550px; width: 100%;">
-                    <h2 style="font-family: var(--font-serif); font-size: 2rem; margin-bottom: 0.5rem;">${CONFIG_DATA.futureMap.title}</h2>
-                    <p style="font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-bottom: 2.5rem;">${CONFIG_DATA.futureMap.subtitle}</p>
-                    
-                    <div style="display: flex; flex-direction: column; gap: 1rem; text-align: left;">
-                        ${CONFIG_DATA.futureMap.pins.map((p, idx) => `
-                            <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 1.2rem; border-radius: 16px; display: flex; gap: 1rem; align-items: center; transition: all 0.3s;" class="future-pin-card">
-                                <div style="font-size: 1.6rem; color: var(--color-highlight);"><i class="fa-solid fa-map-location-dot"></i></div>
-                                <div>
-                                    <h4 style="font-family: var(--font-serif); font-size: 1.1rem; color: #fff; margin-bottom: 2px;">${p.name}</h4>
-                                    <span style="font-size: 0.65rem; color: var(--color-highlight); font-family: monospace;">${p.coords}</span>
-                                    <p style="font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-top: 6px;">${p.desc}</p>
-                                </div>
-                            </div>
+                <div class="glass-panel reveal-element revealed future-dashboard-layout">
+                    <!-- Menú Lateral -->
+                    <div class="future-sidebar">
+                        <h2 style="font-family: var(--font-serif); font-size: 1.2rem; margin-bottom: 1rem; color: var(--color-highlight);">Destinos</h2>
+                        ${CONFIG_DATA.futureMap.categories.map((c, idx) => `
+                            <button class="future-category-btn ${idx === 0 ? 'active' : ''}" data-cat="${c.id}">
+                                <i class="fa-solid ${c.icon} mr-2"></i>${c.name}
+                            </button>
                         `).join('')}
+                        <div style="margin-top: auto; font-size: 0.65rem; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.1em; text-align: center;">
+                            Mapa de Sueños
+                        </div>
+                    </div>
+                    <!-- Área de Visualización -->
+                    <div class="future-gallery-view">
+                        <h3 style="font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 0.5rem; text-align: center;" id="future-main-title">${CONFIG_DATA.futureMap.title}</h3>
+                        <p style="font-size: 0.8rem; color: rgba(255,255,255,0.5); text-align: center; margin-bottom: 0.5rem;" id="future-main-subtitle">${CONFIG_DATA.futureMap.subtitle}</p>
+                        <div style="text-align: center; margin-bottom: 1.5rem; font-family: monospace; font-size: 0.72rem; color: var(--color-highlight);" id="future-coords-display">
+                            [Coordenadas]
+                        </div>
+                        
+                        <div class="floating-shelf-wrapper">
+                            <div class="polaroid-grid" id="future-polaroid-grid">
+                                <!-- Inyección Dinámica al Clic -->
+                            </div>
+                            <div class="floating-shelf"></div>
+                            <div class="shelf-shadow"></div>
+                        </div>
                     </div>
                 </div>
             `;
+            initFutureMapController(sec);
             break;
 
         case 10: // FINAL VAULT
@@ -762,6 +776,60 @@ function initMemoryHubController(sec) {
 
     // Cargar por defecto
     renderCategory('2024');
+}
+
+// Mapa del Futuro (Categorías e interactividad dinámica idéntica al Hub de Memorias)
+function initFutureMapController(sec) {
+    const grid = sec.querySelector('#future-polaroid-grid');
+    const btns = sec.querySelectorAll('.future-category-btn');
+    const coordsDisplay = sec.querySelector('#future-coords-display');
+    if (!grid || btns.length === 0) return;
+
+    function renderCategory(catId) {
+        grid.style.opacity = '0';
+        setTimeout(() => {
+            grid.innerHTML = '';
+            
+            // Buscar la categoría para mostrar coordenadas
+            const catObj = CONFIG_DATA.futureMap.categories.find(c => c.id === catId);
+            if (catObj && coordsDisplay) {
+                coordsDisplay.innerHTML = `<i class="fa-solid fa-location-dot" style="margin-right: 4px;"></i>\u00a0\u00a0${catObj.coords}`;
+            }
+
+            const items = CONFIG_DATA.futureMap.items[catId] || [];
+            
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'polaroid-card';
+                card.style.setProperty('--r', `${item.rotation}deg`);
+                card.innerHTML = `
+                    <img src="${item.src}" alt="${item.title}">
+                    <div class="polaroid-title">${item.title}</div>
+                `;
+                
+                // Efecto de explosión de destellos al hacer clic en polaroids
+                card.addEventListener('click', () => {
+                    triggerPolaroidSparkles(card);
+                });
+
+                grid.appendChild(card);
+            });
+            grid.style.opacity = '1';
+        }, 250);
+    }
+
+    btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            btns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderCategory(btn.dataset.cat);
+        });
+    });
+
+    // Cargar por defecto la primera categoría
+    if (CONFIG_DATA.futureMap.categories.length > 0) {
+        renderCategory(CONFIG_DATA.futureMap.categories[0].id);
+    }
 }
 
 function triggerPolaroidSparkles(elem) {

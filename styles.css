@@ -392,14 +392,16 @@ body {
 }
 
 /* --- 8. Super-Módulo 2: Hub de Memorias --- */
-.memory-dashboard-layout {
+.memory-dashboard-layout,
+.future-dashboard-layout {
     display: flex;
     width: 100%;
     max-width: 950px;
     height: 480px;
 }
 
-.memory-sidebar {
+.memory-sidebar,
+.future-sidebar {
     width: 250px;
     border-right: 1px solid rgba(255, 255, 255, 0.05);
     padding: 2rem 1.5rem;
@@ -408,7 +410,8 @@ body {
     gap: 1rem;
 }
 
-.memory-category-btn {
+.memory-category-btn,
+.future-category-btn {
     width: 100%;
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.03);
@@ -422,14 +425,17 @@ body {
 }
 
 .memory-category-btn:hover,
-.memory-category-btn.active {
+.memory-category-btn.active,
+.future-category-btn:hover,
+.future-category-btn.active {
     border-color: var(--border-accent);
     color: var(--color-highlight);
     background: rgba(var(--glow-accent-rgb), 0.06);
     box-shadow: 0 0 10px rgba(var(--glow-accent-rgb), 0.1);
 }
 
-.memory-gallery-view {
+.memory-gallery-view,
+.future-gallery-view {
     flex: 1;
     padding: 2rem;
     display: flex;
@@ -2295,14 +2301,16 @@ body.loaded-state #main-header {
 
 /* --- RESPONSIVIDAD DEL HUB DE MEMORIAS Y CARTAS --- */
 @media (max-width: 950px) {
-    .memory-dashboard-layout {
+    .memory-dashboard-layout,
+    .future-dashboard-layout {
         flex-direction: column !important;
         height: auto !important;
         min-height: auto !important;
         max-width: 100% !important;
     }
 
-    .memory-sidebar {
+    .memory-sidebar,
+    .future-sidebar {
         width: 100% !important;
         border-right: none !important;
         border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
@@ -2313,15 +2321,18 @@ body.loaded-state #main-header {
         gap: 0.5rem !important;
     }
 
-    .memory-sidebar h2 {
+    .memory-sidebar h2,
+    .future-sidebar h2 {
         display: none !important;
     }
 
-    .memory-sidebar div:last-child {
+    .memory-sidebar div:last-child,
+    .future-sidebar div:last-child {
         display: none !important;
     }
 
-    .memory-category-btn {
+    .memory-category-btn,
+    .future-category-btn {
         width: auto !important;
         flex: 1 1 auto !important;
         text-align: center !important;
@@ -2329,7 +2340,8 @@ body.loaded-state #main-header {
         font-size: 0.78rem !important;
     }
 
-    .memory-gallery-view {
+    .memory-gallery-view,
+    .future-gallery-view {
         padding: 1.5rem 1rem !important;
         width: 100% !important;
         height: auto !important;

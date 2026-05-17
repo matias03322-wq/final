@@ -172,11 +172,28 @@ const CONFIG_DATA = {
         title: 'Mapa del Futuro',
         subtitle: 'Nuestros próximos hitos, aventuras y promesas geográficas',
         badge: 'Módulo 9 / 10',
-        pins: [
-            { name: 'Nuestra Futura Casa', coords: 'Lat 45.4642° / Lon 9.1900°', desc: 'El refugio con cocina amplia y balcón lleno de plantas.' },
-            { name: 'Próxima Aventura (Montaña)', coords: 'Lat 46.0619° / Lon 11.1202°', desc: 'Una cabaña acogedora rodeada de lagos y pinos.' },
-            { name: 'El Gran Viaje Soñado', coords: 'Lat 35.6762° / Lon 139.6503°', desc: 'Caminar bajo los cerezos en flor y explorar luces de neón.' }
-        ]
+        categories: [
+            { id: 'casa', name: 'Nuestra Casa', coords: 'Lat 45.4642° / Lon 9.1900°', icon: 'fa-house-chimney' },
+            { id: 'aventura', name: 'Viaje de Aventura', coords: 'Lat 46.0619° / Lon 11.1202°', icon: 'fa-mountain-sun' },
+            { id: 'soñado', name: 'El Viaje Soñado', coords: 'Lat 35.6762° / Lon 139.6503°', icon: 'fa-plane-up' }
+        ],
+        items: {
+            'casa': [
+                { id: 1, title: 'El Living Soñado', src: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&auto=format&fit=crop&q=60', rotation: -3 },
+                { id: 2, title: 'Cocina de Mimos', src: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=600&auto=format&fit=crop&q=60', rotation: 2 },
+                { id: 3, title: 'Balcón de Plantas', src: 'https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=600&auto=format&fit=crop&q=60', rotation: -2 }
+            ],
+            'aventura': [
+                { id: 4, title: 'Cabaña de Pinos', src: 'https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=600&auto=format&fit=crop&q=60', rotation: 3 },
+                { id: 5, title: 'Lago Espejo', src: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&auto=format&fit=crop&q=60', rotation: -4 },
+                { id: 6, title: 'Fogata de Noche', src: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600&auto=format&fit=crop&q=60', rotation: 1 }
+            ],
+            'soñado': [
+                { id: 7, title: 'Cerezos en Flor', src: 'https://images.unsplash.com/photo-1524413840003-058749e36584?w=600&auto=format&fit=crop&q=60', rotation: -3 },
+                { id: 8, title: 'Luces de Tokio', src: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=600&auto=format&fit=crop&q=60', rotation: 4 },
+                { id: 9, title: 'Templo de Kioto', src: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600&auto=format&fit=crop&q=60', rotation: -2 }
+            ]
+        }
     },
 
     // 🔒 10. FINAL VAULT: La Bóveda de Seguridad
