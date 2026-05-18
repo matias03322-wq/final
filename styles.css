@@ -4717,3 +4717,418 @@ body.loaded-state #main-header {
         font-size: 0.75rem;
     }
 }
+
+/* ==========================================================================
+   16. TUS VALES DIGITALES (DIGITAL COUPON WALLET & GLASSMORPHISM)
+   ========================================================================== */
+.coupons-section-wrapper {
+    width: 100%;
+    max-width: 1120px;
+    margin: 2rem auto;
+    position: relative;
+    padding: 0 1.2rem;
+    box-sizing: border-box;
+}
+
+/* Cabecera (Header) */
+.coupons-header {
+    text-align: center;
+    margin-bottom: 2.2rem;
+}
+
+.coupons-title {
+    font-family: var(--font-serif);
+    font-size: 2.6rem;
+    color: #fff;
+    margin: 0 0 0.5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    text-shadow: 0 0 15px rgba(255, 51, 102, 0.15);
+}
+
+.coupons-title-highlight {
+    color: var(--color-highlight);
+    text-shadow: 0 0 12px rgba(255, 51, 102, 0.75);
+}
+
+.coupons-title-heart {
+    color: var(--color-highlight);
+    filter: drop-shadow(0 0 6px var(--color-highlight));
+    font-size: 2.1rem;
+    animation: heart-shimmer 1.5s infinite ease-in-out;
+}
+
+.coupons-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 0.6rem 0;
+}
+
+.coupons-divider-line {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 51, 102, 0.4), transparent);
+}
+
+.coupons-divider-heart {
+    font-size: 0.8rem;
+    color: var(--color-highlight);
+    filter: drop-shadow(0 0 3px var(--color-highlight));
+}
+
+.coupons-subtitle {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.55);
+    margin: 0;
+}
+
+/* Cuadrícula de Vales (Grid) */
+.coupons-grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+/* Estilo base de cada Tarjeta (Vale) */
+.coupon-wallet-card {
+    background: linear-gradient(135deg, #111111, #161616);
+    border: 1px solid rgba(255, 51, 102, 0.15);
+    border-radius: 20px;
+    padding: 1.8rem 1.4rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.85), 0 0 20px rgba(255, 51, 102, 0.04);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-sizing: border-box;
+}
+
+.coupon-wallet-card:hover {
+    transform: translateY(-8px) scale(1.025);
+    border-color: rgba(255, 51, 102, 0.45);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.95), 0 0 30px rgba(255, 51, 102, 0.22);
+}
+
+/* Esquina superior derecha */
+.coupon-card-top-heart {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    font-size: 0.85rem;
+    color: rgba(255, 51, 102, 0.4);
+    filter: drop-shadow(0 0 3px rgba(255, 51, 102, 0.2));
+    transition: color 0.3s;
+}
+
+.coupon-wallet-card:hover .coupon-card-top-heart {
+    color: var(--color-highlight);
+    filter: drop-shadow(0 0 5px var(--color-highlight));
+    animation: heart-shimmer 1.2s infinite ease-in-out;
+}
+
+/* Centro Superior (Ícono principal) */
+.coupon-icon-glow-box {
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    background: rgba(255, 51, 102, 0.03);
+    border: 1px solid rgba(255, 51, 102, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+    box-shadow: inset 0 0 15px rgba(255, 51, 102, 0.05);
+    transition: all 0.4s;
+}
+
+.coupon-icon-glow-box i {
+    font-size: 2.4rem;
+    color: var(--color-highlight);
+    filter: drop-shadow(0 0 8px rgba(255, 51, 102, 0.75));
+    transition: all 0.4s;
+}
+
+.coupon-wallet-card:hover .coupon-icon-glow-box {
+    background: rgba(255, 51, 102, 0.08);
+    border-color: rgba(255, 51, 102, 0.4);
+    box-shadow: inset 0 0 20px rgba(255, 51, 102, 0.12), 0 0 15px rgba(255, 51, 102, 0.08);
+    transform: scale(1.08);
+}
+
+.coupon-wallet-card:hover .coupon-icon-glow-box i {
+    filter: drop-shadow(0 0 15px rgba(255, 51, 102, 1));
+}
+
+/* Título */
+.coupon-card-title {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    color: #fff;
+    margin: 0 0 0.8rem 0;
+    font-weight: 600;
+}
+
+/* Descripción */
+.coupon-card-desc {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.48);
+    line-height: 1.5;
+    margin: 0 0 1.5rem 0;
+    flex-grow: 1;
+}
+
+/* Código de Canje */
+.coupon-code-badge {
+    width: 100%;
+    background: #0b0b0b;
+    border: 1px dashed rgba(255, 51, 102, 0.35);
+    border-radius: 8px;
+    padding: 0.6rem;
+    font-family: monospace;
+    font-size: 0.82rem;
+    font-weight: bold;
+    color: var(--color-highlight);
+    text-shadow: 0 0 5px rgba(255, 51, 102, 0.4);
+    letter-spacing: 0.05em;
+    margin-bottom: 1.2rem;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.coupon-code-badge:hover {
+    border-color: var(--color-highlight);
+    background: rgba(255, 51, 102, 0.03);
+    text-shadow: 0 0 8px rgba(255, 51, 102, 0.9);
+}
+
+/* Pie del vale */
+.coupon-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 0.68rem;
+    color: rgba(255, 255, 255, 0.32);
+}
+
+.coupon-card-footer i {
+    font-size: 0.7rem;
+}
+
+/* Texto Separador */
+.coupons-separator-text {
+    text-align: center;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: rgba(255, 51, 102, 0.75);
+    text-shadow: 0 0 8px rgba(255, 51, 102, 0.25);
+    margin: 2.2rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.coupons-sparkle-icon {
+    font-size: 0.8rem;
+    color: var(--color-highlight);
+    animation: heart-shimmer 2s infinite ease-in-out;
+}
+
+/* Panel Inferior de Características (Glassmorphism Footer) */
+.coupons-footer-panel {
+    background: rgba(13, 13, 13, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 51, 102, 0.18);
+    border-radius: 20px;
+    padding: 1.5rem 1.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.2rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), inset 0 0 20px rgba(255, 51, 102, 0.02);
+    box-sizing: border-box;
+}
+
+/* Bloque 1: Corazón 3D animado y órbitas */
+.heart-3d-orbit-container {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.heart-3d-asset {
+    font-size: 2.6rem;
+    color: var(--color-highlight);
+    filter: drop-shadow(0 0 12px rgba(255, 51, 102, 0.9));
+    z-index: 5;
+    animation: heart-pulsate-rotate 3.2s infinite ease-in-out;
+}
+
+@keyframes heart-pulsate-rotate {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.12) rotate(4deg); }
+}
+
+.orbit-ring {
+    position: absolute;
+    width: 80px;
+    height: 32px;
+    border: 1.2px solid rgba(255, 51, 102, 0.55);
+    border-radius: 50%;
+    transform: rotateX(72deg) rotateY(-15deg);
+    animation: spin-orbit 6s linear infinite;
+    filter: drop-shadow(0 0 4px rgba(255, 51, 102, 0.5));
+}
+
+.orbit-ring-reverse {
+    position: absolute;
+    width: 82px;
+    height: 34px;
+    border: 1px dashed rgba(255, 51, 102, 0.4);
+    border-radius: 50%;
+    transform: rotateX(60deg) rotateY(35deg);
+    animation: spin-orbit-rev 8s linear infinite;
+}
+
+@keyframes spin-orbit {
+    from { transform: rotateX(72deg) rotateY(-15deg) rotate(0deg); }
+    to { transform: rotateX(72deg) rotateY(-15deg) rotate(360deg); }
+}
+
+@keyframes spin-orbit-rev {
+    from { transform: rotateX(60deg) rotateY(35deg) rotate(360deg); }
+    to { transform: rotateX(60deg) rotateY(35deg) rotate(0deg); }
+}
+
+/* Bloques de Texto de Características */
+.footer-panel-block {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.footer-block-icon {
+    font-size: 1.6rem;
+    color: var(--color-highlight);
+    filter: drop-shadow(0 0 5px var(--color-highlight));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.footer-block-text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.footer-block-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+}
+
+.footer-block-sub {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.45);
+    margin: 0;
+}
+
+/* Separadores Verticales */
+.footer-panel-divider {
+    width: 1px;
+    height: 42px;
+    background: rgba(255, 51, 102, 0.15);
+    flex-shrink: 0;
+}
+
+/* Bloque 5 (Derecha - Recuadro Punteado) */
+.footer-panel-promesa-box {
+    border: 1px dashed rgba(255, 51, 102, 0.35);
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    max-width: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+    box-sizing: border-box;
+}
+
+.footer-promesa-text {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.4;
+    margin: 0 0 6px 0;
+}
+
+.footer-promesa-heart {
+    font-size: 0.75rem;
+    color: var(--color-highlight);
+    filter: drop-shadow(0 0 3px var(--color-highlight));
+    animation: heart-shimmer 1.5s infinite ease-in-out;
+}
+
+/* Responsividad premium */
+@media (max-width: 990px) {
+    .coupons-grid-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .coupons-footer-panel {
+        flex-direction: column;
+        padding: 2rem 1.5rem;
+        gap: 1.8rem;
+    }
+    
+    .footer-panel-divider {
+        display: none;
+    }
+    
+    .footer-panel-block {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+        flex-direction: column;
+    }
+    
+    .footer-panel-promesa-box {
+        max-width: 300px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 580px) {
+    .coupons-grid-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .coupons-title {
+        font-size: 2rem;
+    }
+    
+    .coupon-wallet-card {
+        padding: 1.5rem 1.2rem;
+    }
+}

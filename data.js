@@ -161,7 +161,8 @@ const CONFIG_DATA = {
         coupons: [
             { id: 1, title: "Cena Romántica", icon: "fa-utensils", description: "Válido por una cena mágica bajo la luz de las velas con postre ilimitado.", code: "CENA-GLAM-2026" },
             { id: 2, title: "Pelis y Manta", icon: "fa-film", description: "Válido por una tarde entera acurrucados con palomitas, mantita y sagas.", code: "PELIS-MANTA-LOVE" },
-            { id: 3, title: "Viaje Sorpresa", icon: "fa-plane-departure", description: "Válido por una escapada de fin de semana a un destino por descubrir.", code: "VIAJE-SORPRESA" }
+            { id: 3, title: "Viaje Sorpresa", icon: "fa-plane", description: "Válido por una escapada de fin de semana a un destino por descubrir.", code: "VIAJE-SORPRESA" },
+            { id: 4, title: "Noche de Juegos", icon: "fa-ticket", description: "Válido por una noche de juegos, risas y competencias con gran premio: yo.", code: "JUEGOS-FUN-2026" }
         ]
     },
 

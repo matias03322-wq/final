@@ -673,24 +673,125 @@ function hydrateSuperSection(sec, number) {
             initSystemConsoleController(sec);
             break;
 
-        case 7: // COUPONS WALLET
+        case 7: // COUPONS WALLET (BILLETERA DE VALES DIGITALES)
             sec.innerHTML = `
-                <div class="glass-panel reveal-element revealed" style="padding: 3rem 2rem; width: 100%; max-width: 850px; text-align: center;">
-                    <h2 style="font-family: var(--font-serif); font-size: 2rem; margin-bottom: 0.5rem;">${CONFIG_DATA.couponsWallet.title}</h2>
-                    <p style="font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-bottom: 2.5rem;">${CONFIG_DATA.couponsWallet.subtitle}</p>
-                    
-                    <div class="coupons-grid">
-                        ${CONFIG_DATA.couponsWallet.coupons.map(c => `
-                            <div class="coupon-card">
-                                <div class="coupon-icon"><i class="fa-solid ${c.icon}"></i></div>
-                                <h3 class="coupon-card-title">${c.title}</h3>
-                                <p class="coupon-description">${c.description}</p>
-                                <div class="coupon-code">${c.code}</div>
+                <div class="coupons-section-wrapper reveal-element revealed" id="sec-coupons-panel">
+                    <!-- 1. Cabecera (Header) -->
+                    <div class="coupons-header">
+                        <h2 class="coupons-title">
+                            <span class="coupons-title-heart">💖</span>
+                            <span>Tus <span class="coupons-title-highlight">vales</span> Digitales</span>
+                            <span class="coupons-title-heart">💖</span>
+                        </h2>
+                        <div class="coupons-divider">
+                            <span class="coupons-divider-line"></span>
+                            <span class="coupons-divider-heart">💖</span>
+                            <span class="coupons-divider-line"></span>
+                        </div>
+                        <p class="coupons-subtitle">Canjea tus cupones holográficos interactivos</p>
+                    </div>
+
+                    <!-- 2. Cuadrícula de Vales (Grid de 4 Columnas) -->
+                    <div class="coupons-grid-container">
+                        ${CONFIG_DATA.couponsWallet.coupons.map(c => {
+                            let iconClass = c.icon;
+                            if (c.title === "Pelis y Manta") {
+                                iconClass = "fa-solid fa-clapperboard";
+                            } else if (c.title === "Viaje Sorpresa") {
+                                iconClass = "fa-solid fa-plane";
+                            } else if (c.title === "Noche de Juegos") {
+                                iconClass = "fa-solid fa-ticket";
+                            } else if (c.title === "Cena Romántica") {
+                                iconClass = "fa-solid fa-utensils";
+                            }
+                            return `
+                                <div class="coupon-wallet-card" data-code="${c.code}" data-title="${c.title}">
+                                    <span class="coupon-card-top-heart">💖</span>
+                                    
+                                    <div class="coupon-icon-glow-box">
+                                        <i class="${iconClass}"></i>
+                                    </div>
+                                    
+                                    <h3 class="coupon-card-title">${c.title}</h3>
+                                    <p class="coupon-card-desc">${c.description}</p>
+                                    
+                                    <div class="coupon-code-badge" title="Haz clic para copiar código">
+                                        ${c.code}
+                                    </div>
+                                    
+                                    <div class="coupon-card-footer">
+                                        <i class="fa-regular fa-clock"></i>
+                                        <span>Sin fecha de expiración</span>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+
+                    <!-- 3. Texto Separador -->
+                    <div class="coupons-separator-text">
+                        <span class="coupons-sparkle-icon">✨</span>
+                        <span>Cada vale es una promesa de momentos inolvidables juntos.</span>
+                        <span class="coupons-sparkle-icon">✨</span>
+                    </div>
+
+                    <!-- 4. Panel Inferior de Características (Glassmorphism Footer) -->
+                    <div class="coupons-footer-panel">
+                        
+                        <!-- Bloque 1 (Izquierda): Imagen/ícono grande corazón 3D con órbita -->
+                        <div class="heart-3d-orbit-container">
+                            <div class="orbit-ring"></div>
+                            <div class="orbit-ring-reverse"></div>
+                            <span class="heart-3d-asset">💖</span>
+                        </div>
+
+                        <!-- Bloque 2: Sin fecha de expiración -->
+                        <div class="footer-panel-block">
+                            <div class="footer-block-icon">
+                                <i class="fa-solid fa-calendar-check"></i>
                             </div>
-                        `).join('')}
+                            <div class="footer-block-text">
+                                <h4 class="footer-block-title">Sin fecha de expiración</h4>
+                                <p class="footer-block-sub">Úsalos cuando quieras</p>
+                            </div>
+                        </div>
+
+                        <div class="footer-panel-divider"></div>
+
+                        <!-- Bloque 3: 100% personalizados para ti -->
+                        <div class="footer-panel-block">
+                            <div class="footer-block-icon">
+                                <i class="fa-solid fa-user-lock"></i>
+                            </div>
+                            <div class="footer-block-text">
+                                <h4 class="footer-block-title">100% personalizados para ti</h4>
+                                <p class="footer-block-sub">Hechos con amor infinito</p>
+                            </div>
+                        </div>
+
+                        <div class="footer-panel-divider"></div>
+
+                        <!-- Bloque 4: Canjeo fácil e interactivo -->
+                        <div class="footer-panel-block">
+                            <div class="footer-block-icon">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            </div>
+                            <div class="footer-block-text">
+                                <h4 class="footer-block-title">Canjeo fácil e interactivo</h4>
+                                <p class="footer-block-sub">Toca, descubre y disfruta</p>
+                            </div>
+                        </div>
+
+                        <!-- Bloque 5 (Derecha - Recuadro Punteado) -->
+                        <div class="footer-panel-promesa-box">
+                            <p class="footer-promesa-text">Porque contigo, cada momento es especial.</p>
+                            <span class="footer-promesa-heart">💖</span>
+                        </div>
+                        
                     </div>
                 </div>
             `;
+            initCouponsWalletController(sec);
             break;
 
         case 8: // DECISION CENTER (RULETA INTERACTIVA MULTI-MODO)
@@ -1766,6 +1867,110 @@ function initSystemConsoleController(sec) {
     }
 
     printRow();
+}
+
+// Billetera de Vales Digitales (Copia de código interactiva y efectos de lujo)
+function initCouponsWalletController(sec) {
+    const cards = sec.querySelectorAll('.coupon-wallet-card');
+    
+    // Función de Toast Romántico Auto-Contenida
+    function showRomanticToast(message) {
+        let container = document.getElementById('romantic-toast-container');
+        if (!container) {
+            container = document.createElement('div');
+            container.id = 'romantic-toast-container';
+            container.style.position = 'fixed';
+            container.style.bottom = '30px';
+            container.style.right = '30px';
+            container.style.zIndex = '99999';
+            container.style.display = 'flex';
+            container.style.flexDirection = 'column';
+            container.style.gap = '10px';
+            document.body.appendChild(container);
+        }
+        
+        const toast = document.createElement('div');
+        toast.className = 'glass-panel';
+        toast.style.background = 'rgba(15, 15, 15, 0.88)';
+        toast.style.backdropFilter = 'blur(10px)';
+        toast.style.webkitBackdropFilter = 'blur(10px)';
+        toast.style.border = '1px solid rgba(255, 51, 102, 0.45)';
+        toast.style.borderRadius = '12px';
+        toast.style.padding = '12px 20px';
+        toast.style.color = '#fff';
+        toast.style.fontFamily = 'monospace';
+        toast.style.fontSize = '0.8rem';
+        toast.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 51, 102, 0.2)';
+        toast.style.display = 'flex';
+        toast.style.alignItems = 'center';
+        toast.style.gap = '10px';
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(20px)';
+        toast.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+        
+        toast.innerHTML = `
+            <span style="color: #ff3366; filter: drop-shadow(0 0 3px #ff3366); font-size: 1.1rem; animation: heart-shimmer 1s infinite ease-in-out;">💖</span>
+            <span>${message}</span>
+        `;
+        
+        container.appendChild(toast);
+        
+        setTimeout(() => {
+            toast.style.opacity = '1';
+            toast.style.transform = 'translateY(0)';
+        }, 50);
+        
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateY(-20px)';
+            setTimeout(() => {
+                toast.remove();
+            }, 400);
+        }, 3200);
+    }
+
+    cards.forEach(card => {
+        const badge = card.querySelector('.coupon-code-badge');
+        const code = card.getAttribute('data-code');
+        const title = card.getAttribute('data-title');
+
+        if (badge) {
+            badge.addEventListener('click', (e) => {
+                e.stopPropagation();
+                // Copiar al portapapeles
+                navigator.clipboard.writeText(code).then(() => {
+                    const originalText = badge.innerHTML;
+                    badge.innerHTML = `<i class="fa-solid fa-check" style="margin-right: 4px;"></i> ¡COPIADO!`;
+                    badge.style.borderColor = '#2ecc71';
+                    badge.style.color = '#2ecc71';
+                    badge.style.textShadow = '0 0 8px rgba(46, 204, 113, 0.8)';
+                    
+                    showRomanticToast(`¡Código del vale "${title}" copiado! ready para canjear. ♡`);
+                    
+                    setTimeout(() => {
+                        badge.innerHTML = originalText;
+                        badge.style.borderColor = '';
+                        badge.style.color = '';
+                        badge.style.textShadow = '';
+                    }, 2000);
+                }).catch(() => {
+                    showRomanticToast(`Código: ${code} (Por favor, cópialo manualmente)`);
+                });
+            });
+        }
+
+        // Efecto click interactivo en la tarjeta
+        card.addEventListener('click', () => {
+            card.style.transform = 'scale(0.96) translateY(-4px)';
+            card.style.borderColor = '#ff3366';
+            card.style.boxShadow = '0 0 35px rgba(255, 51, 102, 0.4)';
+            setTimeout(() => {
+                card.style.transform = '';
+                card.style.borderColor = '';
+                card.style.boxShadow = '';
+            }, 250);
+        });
+    });
 }
 
 // Centro de Decisiones (Minijuegos Ruletas)
