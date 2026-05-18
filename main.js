@@ -512,34 +512,67 @@ function hydrateSuperSection(sec, number) {
             initQuantumMailboxController(sec);
             break;
 
-        case 5: // REASONS CORE
+        case 5: // REASONS CORE (EL MAZO DEL ALMA REDESIGN)
             sec.innerHTML = `
-                <div class="glass-panel reveal-element revealed reasons-main-container">
-                    <div class="reasons-bg-glow"></div>
-                    <div class="reasons-particles-container"></div>
-                    
-                    <h2 class="reasons-title">${CONFIG_DATA.reasonsCore.title}</h2>
-                    <p class="reasons-subtitle">${CONFIG_DATA.reasonsCore.subtitle}</p>
-                    
-                    <div class="reasons-deck" id="reasons-deck-wrapper">
-                        <!-- Mazo apilado inyectado dinámicamente -->
+                <div class="soul-deck-wrapper reveal-element revealed" id="sec-soul-deck">
+                    <!-- 1. Cabecera (Header) -->
+                    <div class="deck-header">
+                        <h2 class="deck-title">El Mazo del <span class="deck-title-glow">Alma</span></h2>
+                        <p class="deck-subtitle">Desliza las cartas para descubrir las razones por las que <span class="deck-subtitle-glow">te amo ♡</span></p>
                     </div>
-                    
-                    <div class="reasons-footer-controls">
-                        <button class="btn-premium-reason" id="btn-next-reason">
-                            <span>Siguiente Razón</span>
-                            <i class="fa-solid fa-arrow-right-long"></i>
+
+                    <!-- 2. Sección Central (Carrusel de Tarjetas) -->
+                    <div class="deck-carousel-container">
+                        <!-- Flecha Izquierda -->
+                        <button class="deck-nav-btn btn-prev" id="btn-prev-reason" title="Razón Anterior">
+                            <i class="fa-solid fa-chevron-left"></i>
                         </button>
-                        
-                        <div class="reasons-progress-widget" id="reasons-progress-container">
-                            <div class="progress-widget-numbers">
-                                <span class="current-reason-num" id="widget-current-num">01</span>
-                                <span class="reason-separator">/</span>
-                                <span class="total-reason-num" id="widget-total-num">30</span>
+
+                        <!-- Tarjeta Principal (Mazo) -->
+                        <div class="deck-card-container" id="reasons-deck-wrapper">
+                            <!-- La tarjeta activa y cartas apiladas inyectadas dinámicamente -->
+                        </div>
+
+                        <!-- Flecha Derecha -->
+                        <button class="deck-nav-btn btn-next" id="btn-next-reason" title="Siguiente Razón">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- 4. Barra de Navegación Inferior (Footer del Mazo) -->
+                    <div class="deck-footer-nav">
+                        <!-- Izquierda (Botón de Acción) -->
+                        <button class="btn-deck-action" id="btn-next-reason-footer">
+                            <div class="btn-deck-heart-circle">
+                                <i class="fa-solid fa-heart"></i>
                             </div>
-                            <div class="progress-widget-bar-bg">
-                                <div class="progress-widget-bar-fill" id="widget-bar-fill"></div>
+                            <div class="btn-deck-text-box">
+                                <span class="btn-deck-main-text">SIGUIENTE RAZÓN</span>
+                                <span class="btn-deck-sub-text">Descubre la próxima razón</span>
                             </div>
+                            <i class="fa-solid fa-arrow-right deck-btn-arrow"></i>
+                        </button>
+
+                        <!-- Centro (Divisor Decorativo) -->
+                        <div class="deck-footer-divider">
+                            <div class="dotted-divider-line">
+                                <span class="divider-dot-heart">💖</span>
+                                <span class="divider-dot-heart main-heart">💖</span>
+                                <span class="divider-dot-heart">💖</span>
+                            </div>
+                            <p class="divider-footer-text">Cada carta es un pedacito de <span class="divider-text-pink">mi corazón.</span></p>
+                        </div>
+
+                        <!-- Derecha (Barra de Progreso) -->
+                        <div class="deck-progress-container">
+                            <div class="progress-header-row">
+                                <i class="fa-regular fa-clone progress-card-icon"></i>
+                                <span class="progress-count-text" id="deck-progress-counter">02 / 30</span>
+                            </div>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill" id="deck-progress-bar-fill"></div>
+                            </div>
+                            <span class="progress-footer-sub">Vamos por más razones ♡</span>
                         </div>
                     </div>
                 </div>
@@ -1638,81 +1671,242 @@ function initQuantumMailboxController(sec) {
 // Mazo de Razones 3D (Premium & Cinematic Redesign)
 function initReasonsDeckController(sec) {
     const deck = sec.querySelector('#reasons-deck-wrapper');
-    const btn = sec.querySelector('#btn-next-reason');
-    if (!deck || !btn) return;
+    const btnNext = sec.querySelector('#btn-next-reason');
+    const btnPrev = sec.querySelector('#btn-prev-reason');
+    const btnNextFooter = sec.querySelector('#btn-next-reason-footer');
+    
+    if (!deck) return;
 
     const reasons = CONFIG_DATA.reasonsCore.reasons;
     let activeIndex = 0;
 
-    // Generar partículas rosas flotantes dentro del contenedor Reasons
-    const particlesContainer = sec.querySelector('.reasons-particles-container');
-    if (particlesContainer) {
-        particlesContainer.innerHTML = '';
-        for (let i = 0; i < 20; i++) {
-            const p = document.createElement('div');
-            p.className = 'reason-floating-particle';
-            const size = Math.random() * 5 + 3;
-            const left = Math.random() * 100;
-            const top = Math.random() * 100;
-            const delay = Math.random() * 8;
-            const duration = Math.random() * 8 + 8;
+    const SUB_QUOTES = [
+        { line1: "Esa risa tuya es mi sonido favorito.", line2: "Gracias por hacerme feliz, incluso en lo más simple." },
+        { line1: "Esa sonrisa tuya es mi luz en los días grises.", line2: "Gracias por iluminar mi vida entera. ♡" },
+        { line1: "Tu mirada tiene el superpoder de calmar mi mente.", line2: "Contigo el mundo se detiene y todo está en paz. ♡" },
+        { line1: "Tus abrazos son mi refugio perfecto en este universo.", line2: "Es el único lugar donde siempre quiero quedarme. ♡" },
+        { line1: "Cada conversación contigo es mi momento favorito.", line2: "Adoro escucharte hablar y compartir cada ocurrencia. ♡" },
+        { line1: "Tu apoyo incondicional me da fuerzas para todo.", line2: "Eres mi mayor motivación y mi compañera de vida. ♡" },
+        { line1: "Tus detalles demuestran la belleza de tu alma.", line2: "Haces que cada día ordinario se sienta extraordinario. ♡" },
+        { line1: "Tus mimos son la cura para cualquier cansancio.", line2: "Gracias por cuidar de mí con tanta ternura. ♡" },
+        { line1: "Amo cómo planeas nuestro futuro juntos.", line2: "Cada sueño a tu lado se convierte en mi meta favorita. ♡" },
+        { line1: "Tu paciencia y comprensión son mi mayor tesoro.", line2: "Haces que amar sea la aventura más dulce. ♡" }
+    ];
+
+    function showSecretLoveLetterModal() {
+        let modal = document.getElementById('secret-love-modal');
+        if (!modal) {
+            modal = document.createElement('div');
+            modal.id = 'secret-love-modal';
+            modal.style.position = 'fixed';
+            modal.style.top = '0';
+            modal.style.left = '0';
+            modal.style.width = '100vw';
+            modal.style.height = '100vh';
+            modal.style.zIndex = '99999';
+            modal.style.display = 'flex';
+            modal.style.alignItems = 'center';
+            modal.style.justifyContent = 'center';
+            modal.style.background = 'rgba(0, 0, 0, 0.85)';
+            modal.style.backdropFilter = 'blur(10px)';
+            modal.style.opacity = '0';
+            modal.style.transition = 'opacity 0.4s ease';
             
-            p.style.width = `${size}px`;
-            p.style.height = `${size}px`;
-            p.style.left = `${left}%`;
-            p.style.top = `${top}%`;
-            p.style.animationDelay = `${delay}s`;
-            p.style.animationDuration = `${duration}s`;
-            particlesContainer.appendChild(p);
+            modal.innerHTML = `
+                <div class="glass-panel" style="width: 90%; max-width: 520px; background: rgba(15, 15, 15, 0.95); border: 1px solid rgba(255, 51, 102, 0.35); border-radius: 24px; padding: 2.2rem; box-shadow: 0 0 40px rgba(255, 51, 102, 0.25); text-align: center; position: relative;">
+                    <button id="close-love-modal" style="position: absolute; top: 1rem; right: 1.2rem; background: none; border: none; color: rgba(255,255,255,0.5); font-size: 1.5rem; cursor: pointer; transition: color 0.3s;">&times;</button>
+                    <i class="fa-solid fa-heart-pulse" style="font-size: 2.5rem; color: #ff3366; animation: heart-shimmer 1.2s infinite ease-in-out; margin-bottom: 1.2rem; display: block;"></i>
+                    <h3 style="font-family: var(--font-serif); font-size: 1.8rem; color: #fff; margin-bottom: 1rem;">Mi Carta Secreta Para Ti ♡</h3>
+                    <div style="font-size: 0.95rem; color: rgba(255,255,255,0.85); line-height: 1.6; text-align: left; background: rgba(0,0,0,0.4); padding: 1.4rem; border-radius: 12px; border: 1px solid rgba(255,51,102,0.1); max-height: 280px; overflow-y: auto; margin-bottom: 1.5rem;">
+                        <p style="margin-top: 0;">Mi amor hermoso,</p>
+                        <p>Si estás leyendo esto es porque has recorrido 15 hermosas razones de nuestro amor en este mazo cuántico. Quiero detener el tiempo aquí para decirte que eres el regalo más perfecto que el universo me ha obsequiado.</p>
+                        <p>Cada detalle tuyo, tu sonrisa al despertar, tus ojos al brillar cuando te ríes de mis tonterías, y tu inmensa ternura me hacen confirmarlo cada segundo: quiero caminar a tu lado por siempre.</p>
+                        <p style="margin-bottom: 0; text-align: right; color: #ff3366; font-weight: 500;">Con todo mi corazón, tu amor de siempre. ♡</p>
+                    </div>
+                    <button id="btn-close-modal-bottom" style="background: linear-gradient(135deg, #ff3366, #c2185b); border: none; border-radius: 50px; padding: 0.7rem 2rem; color: #fff; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(255,51,102,0.3); transition: all 0.3s;">Cerrar con Amor</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            
+            const closeBtn = modal.querySelector('#close-love-modal');
+            const closeBtnBottom = modal.querySelector('#btn-close-modal-bottom');
+            
+            const hideModal = () => {
+                modal.style.opacity = '0';
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 400);
+            };
+            
+            closeBtn.addEventListener('click', hideModal);
+            closeBtnBottom.addEventListener('click', hideModal);
         }
+        
+        modal.style.display = 'flex';
+        setTimeout(() => {
+            modal.style.opacity = '1';
+        }, 50);
     }
 
     function renderDeck() {
         deck.innerHTML = '';
         
-        // Renderizar un subconjunto de 3 cartas consecutivas para lograr profundidad 3D
-        for (let i = 0; i < 3; i++) {
-            const index = (activeIndex + i) % reasons.length;
-            const card = document.createElement('div');
-            card.className = i === 0 ? 'stacked-card active' : 'stacked-card inactive';
-            
-            // Estilos 3D apilados decrecientes
-            const scale = 1 - (i * 0.06);
-            const translateY = i * 20;
-            const translateZ = -i * 50;
-            const opacity = 1 - (i * 0.4);
-            const filterVal = i > 0 ? `blur(${i * 2}px)` : 'none';
-            
-            card.style.transform = `scale(${scale}) translateY(${translateY}px) translateZ(${translateZ}px)`;
-            card.style.opacity = opacity;
-            card.style.filter = filterVal;
-            card.style.zIndex = 100 - i;
-            
-            card.innerHTML = `
-                <div class="reason-num">Razón #${index + 1}</div>
-                <div class="reason-text">"${reasons[index]}"</div>
-            `;
-            
-            // Añadir drag swipeable solo a la carta superior (i === 0)
-            if (i === 0) {
-                initSwipeableCard(card);
-            }
-
-            deck.appendChild(card);
+        // Renderizar la carta activa con todos sus detalles premium
+        const index = activeIndex;
+        const reasonText = reasons[index];
+        
+        // Resaltar última palabra
+        let formattedText = reasonText;
+        const words = reasonText.split(' ');
+        if (words.length > 1) {
+            const lastWord = words.pop();
+            formattedText = words.join(' ') + ` <span class="reason-text-pink-highlight">${lastWord}</span>`;
+        } else {
+            formattedText = `<span class="reason-text-pink-highlight">${reasonText}</span>`;
         }
 
-        // Actualizar mini widget de progreso
-        const currentNumEl = sec.querySelector('#widget-current-num');
-        const totalNumEl = sec.querySelector('#widget-total-num');
-        const barFillEl = sec.querySelector('#widget-bar-fill');
-        if (currentNumEl && totalNumEl && barFillEl) {
+        const sub = SUB_QUOTES[index % SUB_QUOTES.length];
+        const isUnlocked = index >= 14;
+
+        const card = document.createElement('div');
+        card.className = 'soul-card';
+        
+        // Elementos flotantes decorativos (Sketch hearts)
+        const heartLeftHTML = `<i class="fa-solid fa-heart sketch-heart-bg sketch-heart-left"></i>`;
+        const heartRightHTML = `<i class="fa-solid fa-heart sketch-heart-bg sketch-heart-right"></i>`;
+        
+        // Píldora Superior
+        const formattedNum = index + 1 < 10 ? `0${index + 1}` : `${index + 1}`;
+        const pillHTML = `<div class="deck-pill-badge"><span>♡</span> RAZÓN #${formattedNum} <span>♡</span></div>`;
+        
+        // Cita
+        const quoteHTML = `
+            <div class="deck-quote-container">
+                <span class="deck-quote-mark open">“</span>
+                <p class="deck-quote-text">${formattedText}</p>
+                <span class="deck-quote-mark close">”</span>
+            </div>
+        `;
+        
+        // Sub-cita
+        const subquoteHTML = `
+            <div class="deck-subquote-box">
+                <i class="fa-solid fa-heart deck-subquote-heart"></i>
+                <p class="deck-subquote-line1">${sub.line1}</p>
+                <p class="deck-subquote-line2">${sub.line2}</p>
+            </div>
+        `;
+        
+        // Bloque de atributos
+        const attributesHTML = `
+            <div class="deck-attributes-container">
+                <div class="deck-attributes-grid">
+                    <div class="deck-attribute-column">
+                        <span class="deck-attribute-icon"><i class="fa-regular fa-face-smile"></i></span>
+                        <span class="deck-attribute-title">Me haces feliz</span>
+                        <span class="deck-attribute-sub">Cada día, de mil maneras diferentes.</span>
+                    </div>
+                    <div class="deck-attribute-divider deck-attribute-divider-1"></div>
+                    <div class="deck-attribute-column">
+                        <span class="deck-attribute-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+                        <span class="deck-attribute-title">Eres única</span>
+                        <span class="deck-attribute-sub">No hay nadie como tú en todo el mundo.</span>
+                    </div>
+                    <div class="deck-attribute-divider deck-attribute-divider-2"></div>
+                    <div class="deck-attribute-column">
+                        <span class="deck-attribute-icon"><i class="fa-regular fa-heart"></i></span>
+                        <span class="deck-attribute-title">Te amo</span>
+                        <span class="deck-attribute-sub">Hoy, mañana y en todos mis futuros.</span>
+                    </div>
+                    <div class="deck-attribute-divider deck-attribute-divider-3"></div>
+                    <div class="deck-attribute-column">
+                        <span class="deck-attribute-icon"><i class="fa-solid fa-hand-holding-heart"></i></span>
+                        <span class="deck-attribute-title">Gracias por ti</span>
+                        <span class="deck-attribute-sub">Por elegir estar, por cuidar, por amar como lo haces.</span>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // Banner de Carta Secreta
+        const secretBannerHTML = isUnlocked ? `
+            <div class="deck-secret-banner cursor-pointer hover:border-pink-500 transition-all duration-300" id="secret-card-unlocked-btn" style="border-color: rgba(255, 51, 102, 0.45); cursor: pointer;">
+                <div class="deck-secret-left">
+                    <div class="secret-envelope-3d-wrapper">
+                        <i class="fa-solid fa-envelope-open-text secret-envelope-3d" style="color: #ff3366;"></i>
+                        <span class="secret-envelope-badge">!</span>
+                    </div>
+                    <div class="deck-secret-text-box">
+                        <span class="deck-secret-title" style="color: #ff3366;">¡CARTA SECRETA DESBLOQUEADA!</span>
+                        <span class="deck-secret-sub" style="color: #fff;">Haz clic aquí para abrir tu mensaje ultra especial de amor #15 ♡</span>
+                    </div>
+                </div>
+                <div class="deck-secret-right" style="background: rgba(255, 51, 102, 0.15); border-color: rgba(255, 51, 102, 0.45);">
+                    <i class="fa-solid fa-lock-open deck-secret-lock-icon" style="color: #ff3366;"></i>
+                    <div class="deck-secret-lock-texts">
+                        <span class="deck-secret-lock-title" style="color: #ff80ab;">¡Ábrela ahora!</span>
+                        <span class="deck-secret-lock-sub" style="color: rgba(255,255,255,0.7);">Toca para descubrir</span>
+                    </div>
+                </div>
+            </div>
+        ` : `
+            <div class="deck-secret-banner">
+                <div class="deck-secret-left">
+                    <div class="secret-envelope-3d-wrapper">
+                        <i class="fa-regular fa-envelope secret-envelope-3d"></i>
+                        <span class="secret-envelope-badge">1</span>
+                    </div>
+                    <div class="deck-secret-text-box">
+                        <span class="deck-secret-title">Carta secreta desbloqueada</span>
+                        <span class="deck-secret-sub">Hay algo especial que quiero decirte en la carta #15.</span>
+                    </div>
+                </div>
+                <div class="deck-secret-right">
+                    <i class="fa-solid fa-lock deck-secret-lock-icon"></i>
+                    <div class="deck-secret-lock-texts">
+                        <span class="deck-secret-lock-title">Descúbrela pronto</span>
+                        <span class="deck-secret-lock-sub">Sigue avanzando...</span>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        card.innerHTML = `
+            ${heartLeftHTML}
+            ${heartRightHTML}
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; z-index: 2;">
+                ${pillHTML}
+                ${quoteHTML}
+                ${subquoteHTML}
+                ${attributesHTML}
+                ${secretBannerHTML}
+            </div>
+        `;
+        
+        initSwipeableCard(card);
+        deck.appendChild(card);
+
+        // Bind interactive unlock click if index >= 14
+        if (isUnlocked) {
+            const secretBtn = card.querySelector('#secret-card-unlocked-btn');
+            if (secretBtn) {
+                secretBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    showSecretLoveLetterModal();
+                });
+            }
+        }
+
+        // Actualizar mini widget de progreso y barra
+        const countTextEl = sec.querySelector('#deck-progress-counter');
+        const fillEl = sec.querySelector('#deck-progress-bar-fill');
+        if (countTextEl && fillEl) {
             const formattedCurrent = activeIndex + 1 < 10 ? `0${activeIndex + 1}` : `${activeIndex + 1}`;
             const formattedTotal = reasons.length < 10 ? `0${reasons.length}` : `${reasons.length}`;
-            currentNumEl.textContent = formattedCurrent;
-            totalNumEl.textContent = formattedTotal;
+            countTextEl.textContent = `${formattedCurrent} / ${formattedTotal}`;
             
             const pct = ((activeIndex + 1) / reasons.length) * 100;
-            barFillEl.style.width = `${pct}%`;
+            fillEl.style.width = `${pct}%`;
         }
     }
 
@@ -1725,7 +1919,6 @@ function initReasonsDeckController(sec) {
             isDragging = true;
             startX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
             card.style.transition = 'none';
-            card.style.animation = 'none'; // Detener animación flotante mientras se arrastra
             
             window.addEventListener('mousemove', dragMove);
             window.addEventListener('mouseup', dragEnd);
@@ -1735,13 +1928,13 @@ function initReasonsDeckController(sec) {
 
         function dragMove(e) {
             if (!isDragging) return;
-            if (e.type === 'touchmove') e.preventDefault(); // Evitar scroll vertical nativo
+            if (e.type === 'touchmove') e.preventDefault();
             
             currentX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
             const diffX = currentX - startX;
-            const rot = diffX / 14;
+            const rot = diffX / 16;
             
-            card.style.transform = `translateX(${diffX}px) rotate(${rot}deg) scale(1.02)`;
+            card.style.transform = `translateX(${diffX}px) rotate(${rot}deg) scale(1.01)`;
         }
 
         function dragEnd() {
@@ -1749,29 +1942,24 @@ function initReasonsDeckController(sec) {
             isDragging = false;
             
             const diffX = currentX - startX;
-            card.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s';
+            card.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s';
             
-            if (Math.abs(diffX) > 120) {
-                // Swipe Out exitoso (Derecha o Izquierda)
+            if (Math.abs(diffX) > 130) {
+                // Swipe Out
                 const dir = diffX > 0 ? 1 : -1;
-                card.style.transform = `translateX(${dir * 380}px) rotate(${dir * 25}deg) scale(0.85) filter(blur(4px))`;
+                card.style.transform = `translateX(${dir * 380}px) rotate(${dir * 22}deg) scale(0.88)`;
                 card.style.opacity = '0';
                 
-                // Efecto de pulso en el widget
-                const progressWidget = sec.querySelector('#reasons-progress-container');
-                if (progressWidget) {
-                    progressWidget.style.transform = 'scale(1.08)';
-                    setTimeout(() => progressWidget.style.transform = 'none', 300);
-                }
-
                 setTimeout(() => {
-                    activeIndex = (activeIndex + 1) % reasons.length;
+                    if (dir > 0) {
+                        activeIndex = (activeIndex + 1) % reasons.length;
+                    } else {
+                        activeIndex = (activeIndex - 1 + reasons.length) % reasons.length;
+                    }
                     renderDeck();
-                }, 250);
+                }, 220);
             } else {
-                // Volver a posición original apilada
                 card.style.transform = '';
-                card.style.animation = 'reason-float 6s ease-in-out infinite';
             }
 
             window.removeEventListener('mousemove', dragMove);
@@ -1784,30 +1972,53 @@ function initReasonsDeckController(sec) {
         card.addEventListener('touchstart', dragStart, { passive: true });
     }
 
-    btn.addEventListener('click', () => {
-        const topCard = deck.children[0];
-        if (!topCard) return;
+    // Navegación Izquierda (Previo)
+    if (btnPrev) {
+        btnPrev.addEventListener('click', () => {
+            const cardEl = deck.querySelector('.soul-card');
+            if (cardEl) {
+                cardEl.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s';
+                cardEl.style.transform = 'translateX(-380px) rotate(-22deg) scale(0.88)';
+                cardEl.style.opacity = '0';
+            }
+            setTimeout(() => {
+                activeIndex = (activeIndex - 1 + reasons.length) % reasons.length;
+                renderDeck();
+            }, 220);
+        });
+    }
 
-        topCard.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s';
-        topCard.style.transform = 'translateX(380px) rotate(22deg) scale(0.85) filter(blur(4px))';
-        topCard.style.opacity = '0';
-        
-        // Efecto de pulso al presionar botón
-        btn.classList.add('pulse-click');
-        setTimeout(() => btn.classList.remove('pulse-click'), 400);
+    // Navegación Derecha (Siguiente)
+    if (btnNext) {
+        btnNext.addEventListener('click', () => {
+            const cardEl = deck.querySelector('.soul-card');
+            if (cardEl) {
+                cardEl.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s';
+                cardEl.style.transform = 'translateX(380px) rotate(22deg) scale(0.88)';
+                cardEl.style.opacity = '0';
+            }
+            setTimeout(() => {
+                activeIndex = (activeIndex + 1) % reasons.length;
+                renderDeck();
+            }, 220);
+        });
+    }
 
-        // Efecto de pulso en el widget
-        const progressWidget = sec.querySelector('#reasons-progress-container');
-        if (progressWidget) {
-            progressWidget.style.transform = 'scale(1.08)';
-            setTimeout(() => progressWidget.style.transform = 'none', 300);
-        }
-
-        setTimeout(() => {
-            activeIndex = (activeIndex + 1) % reasons.length;
-            renderDeck();
-        }, 250);
-    });
+    // Botón de Acción Footer (Siguiente)
+    if (btnNextFooter) {
+        btnNextFooter.addEventListener('click', () => {
+            const cardEl = deck.querySelector('.soul-card');
+            if (cardEl) {
+                cardEl.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s';
+                cardEl.style.transform = 'translateX(380px) rotate(22deg) scale(0.88)';
+                cardEl.style.opacity = '0';
+            }
+            setTimeout(() => {
+                activeIndex = (activeIndex + 1) % reasons.length;
+                renderDeck();
+            }, 220);
+        });
+    }
 
     renderDeck();
 }

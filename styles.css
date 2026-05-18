@@ -4708,13 +4708,693 @@ body.loaded-state #main-header {
         transform: translateY(-80px) scale(1.05);
     }
     
-    .quantum-footer-quote {
-        padding: 0.8rem 1.2rem;
+    .quantum-footer-quote span {
+        font-size: 0.75rem;
+    }
+}
+
+/* ==========================================================================
+   15. EL MAZO DEL ALMA (SOUL DECK CARD PORTAL)
+   ========================================================================== */
+.soul-deck-wrapper {
+    width: 100%;
+    max-width: 960px;
+    margin: 2rem auto;
+    position: relative;
+    padding: 0 1.2rem;
+    box-sizing: border-box;
+}
+
+/* Cabecera */
+.deck-header {
+    text-align: center;
+    margin-bottom: 2.2rem;
+}
+
+.deck-title {
+    font-family: var(--font-serif);
+    font-size: 2.8rem;
+    color: #fff;
+    margin: 0 0 0.5rem 0;
+    text-shadow: 0 0 15px rgba(255, 51, 102, 0.15);
+}
+
+.deck-title-glow {
+    color: var(--color-highlight);
+    text-shadow: 0 0 12px rgba(255, 51, 102, 0.85);
+}
+
+.deck-subtitle {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.55);
+    margin: 0;
+}
+
+.deck-subtitle-glow {
+    color: var(--color-highlight);
+    text-shadow: 0 0 5px rgba(255, 51, 102, 0.4);
+}
+
+/* Sección Central (Carrusel y Flechas) */
+.deck-carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.8rem;
+    margin-bottom: 2.2rem;
+    position: relative;
+}
+
+/* Flechas Laterales */
+.deck-nav-btn {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: rgba(13, 13, 13, 0.85);
+    border: 1px solid rgba(255, 51, 102, 0.18);
+    color: var(--color-highlight);
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    flex-shrink: 0;
+    z-index: 10;
+}
+
+.deck-nav-btn:hover {
+    border-color: var(--color-highlight);
+    background: rgba(255, 51, 102, 0.08);
+    box-shadow: 0 0 20px rgba(255, 51, 102, 0.3);
+    transform: scale(1.08);
+}
+
+.deck-nav-btn:active {
+    transform: scale(0.95);
+}
+
+/* Contenedor del Mazo */
+.deck-card-container {
+    width: 100%;
+    max-width: 760px;
+    position: relative;
+    perspective: 1200px;
+}
+
+/* Tarjeta Principal */
+.soul-card {
+    background: linear-gradient(135deg, rgba(16, 16, 16, 0.95), rgba(22, 22, 22, 0.95));
+    border: 1px solid rgba(255, 51, 102, 0.22);
+    border-radius: 24px;
+    padding: 2.2rem 2rem;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(255, 51, 102, 0.14);
+    box-sizing: border-box;
+    overflow: hidden;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s, border-color 0.6s;
+}
+
+.soul-card:hover {
+    border-color: rgba(255, 51, 102, 0.45);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 40px rgba(255, 51, 102, 0.25);
+}
+
+/* Elementos decorativos (Corazones sketch) */
+.sketch-heart-bg {
+    position: absolute;
+    color: rgba(255, 51, 102, 0.04);
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+
+.sketch-heart-left {
+    top: 2rem;
+    left: 2rem;
+    font-size: 4.8rem;
+    transform: rotate(-15deg);
+}
+
+.sketch-heart-right {
+    top: 3rem;
+    right: 2.5rem;
+    font-size: 5.4rem;
+    transform: rotate(18deg);
+}
+
+.soul-card:hover .sketch-heart-left {
+    transform: rotate(-10deg) scale(1.08);
+    color: rgba(255, 51, 102, 0.08);
+}
+
+.soul-card:hover .sketch-heart-right {
+    transform: rotate(22deg) scale(1.08);
+    color: rgba(255, 51, 102, 0.08);
+}
+
+/* Píldora Superior */
+.deck-pill-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 51, 102, 0.4);
+    border-radius: 50px;
+    padding: 0.45rem 1.4rem;
+    font-family: var(--font-serif);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-highlight);
+    text-shadow: 0 0 5px rgba(255, 51, 102, 0.3);
+    margin-bottom: 1.8rem;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+}
+
+.deck-pill-badge span {
+    font-size: 0.85rem;
+    animation: heart-shimmer 1.5s infinite ease-in-out;
+}
+
+/* Cita Principal */
+.deck-quote-container {
+    margin-bottom: 1.8rem;
+    text-align: center;
+    position: relative;
+    padding: 0 2rem;
+}
+
+.deck-quote-text {
+    font-family: var(--font-serif);
+    font-size: 2.1rem;
+    line-height: 1.4;
+    color: #fff;
+    font-weight: 500;
+    margin: 0;
+    position: relative;
+    display: inline;
+}
+
+.reason-text-pink-highlight {
+    color: var(--color-highlight);
+    text-shadow: 0 0 10px rgba(255, 51, 102, 0.75);
+    font-weight: 600;
+}
+
+.deck-quote-mark {
+    color: rgba(255, 51, 102, 0.4);
+    font-size: 2.4rem;
+    font-family: var(--font-serif);
+    position: absolute;
+    line-height: 1;
+}
+
+.deck-quote-mark.open {
+    top: -0.8rem;
+    left: -0.4rem;
+}
+
+.deck-quote-mark.close {
+    bottom: -1.6rem;
+    right: -0.4rem;
+}
+
+/* Sub-cita */
+.deck-subquote-box {
+    text-align: center;
+    margin-bottom: 2.2rem;
+}
+
+.deck-subquote-heart {
+    font-size: 0.82rem;
+    color: var(--color-highlight);
+    filter: drop-shadow(0 0 3px var(--color-highlight));
+    margin-bottom: 0.6rem;
+    animation: heart-shimmer 1.5s infinite ease-in-out;
+}
+
+.deck-subquote-line1 {
+    font-size: 0.86rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 4px 0;
+}
+
+.deck-subquote-line2 {
+    font-size: 0.86rem;
+    color: rgba(255, 51, 102, 0.75);
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Bloque de Atributos (Grid de 4 columnas) */
+.deck-attributes-container {
+    background: rgba(8, 8, 8, 0.6);
+    border: 1px solid rgba(255, 51, 102, 0.12);
+    border-radius: 16px;
+    padding: 1.4rem 1rem;
+    margin-bottom: 1.8rem;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.6);
+}
+
+.deck-attributes-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.8rem;
+    position: relative;
+}
+
+.deck-attribute-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 0.8rem;
+    box-sizing: border-box;
+}
+
+.deck-attribute-icon {
+    font-size: 1.5rem;
+    color: var(--color-highlight);
+    filter: drop-shadow(0 0 4px var(--color-highlight));
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+}
+
+.deck-attribute-title {
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 4px 0;
+    letter-spacing: 0.02em;
+}
+
+.deck-attribute-sub {
+    font-size: 0.66rem;
+    color: rgba(255, 255, 255, 0.4);
+    line-height: 1.3;
+    margin: 0;
+}
+
+/* Separadores Verticales */
+.deck-attribute-divider {
+    position: absolute;
+    top: 10%;
+    bottom: 10%;
+    width: 1px;
+    background: rgba(255, 51, 102, 0.08);
+}
+
+.deck-attribute-divider-1 { left: 25%; }
+.deck-attribute-divider-2 { left: 50%; }
+.deck-attribute-divider-3 { left: 75%; }
+
+/* Banner de Carta Secreta */
+.deck-secret-banner {
+    background: rgba(12, 12, 12, 0.85);
+    border: 1px solid rgba(255, 51, 102, 0.18);
+    border-radius: 16px;
+    padding: 1rem 1.4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    box-sizing: border-box;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.deck-secret-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+/* Sobre 3D animado con Badge */
+.secret-envelope-3d-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 32px;
+    flex-shrink: 0;
+}
+
+.secret-envelope-3d {
+    font-size: 2rem;
+    color: var(--color-highlight);
+    filter: drop-shadow(0 0 6px var(--color-highlight));
+    animation: heart-shimmer 1.8s infinite ease-in-out;
+}
+
+.secret-envelope-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-highlight);
+    border: 1.5px solid #000;
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    animation: pulse-badge 1.8s infinite ease-in-out;
+}
+
+@keyframes pulse-badge {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.18); }
+}
+
+.deck-secret-text-box {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.deck-secret-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--color-highlight);
+    margin: 0;
+    text-shadow: 0 0 5px rgba(255, 51, 102, 0.2);
+}
+
+.deck-secret-sub {
+    font-size: 0.68rem;
+    color: rgba(255, 255, 255, 0.42);
+    margin: 0;
+}
+
+.deck-secret-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 51, 102, 0.12);
+    border-radius: 10px;
+    padding: 0.5rem 0.9rem;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.deck-secret-lock-icon {
+    font-size: 0.95rem;
+    color: rgba(255, 51, 102, 0.65);
+    filter: drop-shadow(0 0 3px rgba(255, 51, 102, 0.3));
+}
+
+.deck-secret-lock-texts {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.deck-secret-lock-title {
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: rgba(255, 51, 102, 0.55);
+    margin: 0;
+}
+
+.deck-secret-lock-sub {
+    font-size: 0.64rem;
+    color: rgba(255, 255, 255, 0.3);
+    margin: 0;
+}
+
+.deck-secret-floating-hearts {
+    display: flex;
+    gap: 4px;
+    font-size: 0.68rem;
+    color: rgba(255, 51, 102, 0.35);
+}
+
+/* Barra de Navegación Inferior (Footer del Mazo) */
+.deck-footer-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0 0.5rem;
+    box-sizing: border-box;
+}
+
+/* Botón de Acción */
+.btn-deck-action {
+    background: linear-gradient(135deg, #ff3366, #c2185b);
+    border: none;
+    border-radius: 50px;
+    padding: 0.55rem 1.6rem 0.55rem 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(255, 51, 102, 0.35), 0 0 15px rgba(255, 51, 102, 0.2);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    color: #fff;
+    flex-shrink: 0;
+    text-align: left;
+}
+
+.btn-deck-action:hover {
+    transform: translateY(-4px) scale(1.025);
+    box-shadow: 0 12px 30px rgba(255, 51, 102, 0.55), 0 0 25px rgba(255, 51, 102, 0.4);
+}
+
+.btn-deck-action:active {
+    transform: translateY(0) scale(0.96);
+}
+
+.btn-deck-heart-circle {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.btn-deck-heart-circle i {
+    font-size: 1.1rem;
+    color: #fff;
+    filter: drop-shadow(0 0 3px #fff);
+    animation: heart-shimmer 1.2s infinite ease-in-out;
+}
+
+.btn-deck-text-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-deck-main-text {
+    font-size: 0.88rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+}
+
+.btn-deck-sub-text {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.2;
+}
+
+.deck-btn-arrow {
+    font-size: 0.95rem;
+    transition: transform 0.3s;
+}
+
+.btn-deck-action:hover .deck-btn-arrow {
+    transform: translateX(5px);
+}
+
+/* Divisor Decorativo del Centro */
+.deck-footer-divider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.dotted-divider-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    position: relative;
+    width: 100%;
+    max-width: 180px;
+    margin-bottom: 0.4rem;
+}
+
+.dotted-divider-line::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    border-top: 1.5px dotted rgba(255, 51, 102, 0.38);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.divider-dot-heart {
+    font-size: 0.78rem;
+    color: rgba(255, 51, 102, 0.45);
+    background: #090909;
+    padding: 0 4px;
+    z-index: 2;
+    filter: drop-shadow(0 0 2px rgba(255, 51, 102, 0.2));
+}
+
+.divider-dot-heart.main-heart {
+    color: var(--color-highlight);
+    font-size: 0.9rem;
+    filter: drop-shadow(0 0 4px var(--color-highlight));
+    animation: heart-shimmer 1.5s infinite ease-in-out;
+}
+
+.divider-footer-text {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.45);
+    margin: 0;
+    text-align: center;
+}
+
+.divider-text-pink {
+    color: var(--color-highlight);
+    font-weight: 500;
+    text-shadow: 0 0 5px rgba(255, 51, 102, 0.3);
+}
+
+/* Barra de Progreso */
+.deck-progress-container {
+    background: rgba(12, 12, 12, 0.75);
+    border: 1px solid rgba(255, 51, 102, 0.12);
+    border-radius: 16px;
+    padding: 0.65rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 190px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.35);
+}
+
+.progress-header-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0.4rem;
+}
+
+.progress-card-icon {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.progress-count-text {
+    font-size: 0.85rem;
+    font-weight: bold;
+    font-family: monospace;
+    color: var(--color-highlight);
+    text-shadow: 0 0 5px rgba(255, 51, 102, 0.4);
+}
+
+.progress-bar-bg {
+    width: 100%;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 0.4rem;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: var(--color-highlight);
+    border-radius: 20px;
+    box-shadow: 0 0 8px var(--color-highlight);
+    transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.progress-footer-sub {
+    font-size: 0.64rem;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+/* Responsividad premium */
+@media (max-width: 900px) {
+    .deck-footer-nav {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: center;
+    }
+    
+    .btn-deck-action {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+    }
+    
+    .deck-progress-container {
+        width: 100%;
+        max-width: 320px;
+    }
+}
+
+@media (max-width: 780px) {
+    .deck-nav-btn {
+        display: none; /* Desaparecen flechas en móviles según directiva */
+    }
+    
+    .deck-carousel-container {
+        gap: 0;
+    }
+    
+    .soul-card {
+        padding: 1.8rem 1.2rem;
         border-radius: 20px;
     }
     
-    .quantum-footer-quote span {
-        font-size: 0.75rem;
+    .deck-quote-text {
+        font-size: 1.5rem;
+    }
+    
+    .deck-attributes-grid {
+        grid-template-columns: repeat(2, 2fr);
+        gap: 1.2rem 0.5rem;
+    }
+    
+    .deck-attribute-divider {
+        display: none; /* Desaparecen líneas en grid 2x2 */
+    }
+    
+    .deck-secret-banner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+    
+    .deck-secret-right {
+        justify-content: center;
+    }
+    
+    .deck-title {
+        font-size: 2.2rem;
     }
 }
 
